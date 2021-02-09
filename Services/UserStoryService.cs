@@ -90,6 +90,9 @@ namespace UserStories.Services
             UserStory userStory = GetUserStory(id);
             switch (userStory.Column)
             {
+                case Column.To_Do:
+                    userStory.Column = Column.Backlog;
+                    break;
                 case Column.Doing:
                     userStory.Column = Column.To_Do;
                     break;
@@ -109,6 +112,9 @@ namespace UserStories.Services
             UserStory userStory = GetUserStory(id);
             switch (userStory.Column)
             {
+                case Column.Backlog:
+                    userStory.Column = Column.To_Do;
+                    break;
                 case Column.To_Do:
                     userStory.Column = Column.Doing;
                     break;

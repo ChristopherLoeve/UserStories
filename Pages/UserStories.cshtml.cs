@@ -11,7 +11,7 @@ namespace UserStories.Pages
 {
     public class UserStoriesModel : PageModel
     {
-        private UserStoryService userStoryService;
+        public UserStoryService userStoryService;
         public List<UserStory> UserStories { get; private set; }
         
 
@@ -29,13 +29,13 @@ namespace UserStories.Pages
         public void OnGetMoveLeft(int id)
         {
             userStoryService.MoveStoryLeft(id);
-            UserStories = userStoryService.GetUserStories();
+            OnGet();
         }
 
         public void OnGetMoveRight(int id)
         {
             userStoryService.MoveStoryRight(id);
-            UserStories = userStoryService.GetUserStories();
+            OnGet();
         }
     }
 }
