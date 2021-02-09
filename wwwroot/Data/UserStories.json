@@ -7,7 +7,7 @@
     "CreationDate": "2021-02-08T10:35:28.9440471+01:00",
     "Priority": 4,
     "StoryPoints": 1,
-    "Column": 1
+    "Column": 0
   },
   {
     "Id": 2,
@@ -17,7 +17,7 @@
     "CreationDate": "2021-02-08T10:36:00.4346772+01:00",
     "Priority": 2,
     "StoryPoints": 0,
-    "Column": 3
+    "Column": 0
   },
   {
     "Id": 3,
@@ -27,7 +27,7 @@
     "CreationDate": "2021-02-08T10:48:41.6182209+01:00",
     "Priority": 2,
     "StoryPoints": 1,
-    "Column": 3
+    "Column": 0
   },
   {
     "Id": 4,
@@ -87,7 +87,7 @@
     "CreationDate": "2021-02-08T10:54:32.1649787+01:00",
     "Priority": 4,
     "StoryPoints": 1,
-    "Column": 1
+    "Column": 0
   },
   {
     "Id": 10,
@@ -97,7 +97,7 @@
     "CreationDate": "2021-02-08T10:55:23.2088951+01:00",
     "Priority": 4,
     "StoryPoints": 1,
-    "Column": 1
+    "Column": 0
   },
   {
     "Id": 11,
