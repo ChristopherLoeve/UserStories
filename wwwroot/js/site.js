@@ -2,3 +2,29 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your Javascript code.
+
+function onDragStart(event) {
+    event
+        .dataTransfer
+        .setData('text/plain', event.target.id);
+    event
+        .currentTarget
+        .style
+}
+
+function onDragOver(event) {
+    event.preventDefault();
+}
+
+function onDrop(event) {
+    //Placeholder js
+    const id = event
+        .dataTransfer
+        .getData('text');
+    var draggableElement = document.getElementById(id);
+    const dropzone = event.target;
+    dropzone.appendChild(draggableElement);
+    event
+        .dataTransfer
+        .clearData()
+}
