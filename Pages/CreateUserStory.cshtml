@@ -1,0 +1,254 @@
+﻿@page
+@using UserStories.Models
+@model UserStories.Pages.CreateUserStoryModel
+@{
+    ViewData["Title"] = "Create User Story";
+    <h1 class="text-center">User Stories</h1>
+
+    <div class="card-group">
+
+        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center">
+                <h5 class="card-title">
+                    To do
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" asp-page="CreateUserStory" asp-route-id="1">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.To_Do)
+                {
+                    <div class="card mb-2">
+                        <div class="card-header p-1" style="height:2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                            <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
+                            <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                            <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
+                            <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn" type="button" asp-page="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                }
+
+            }
+
+        </div>
+
+        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center">
+                <h5 class="card-title">
+                    Doing
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" asp-page="CreateUserStory" asp-route-id="2">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.Doing)
+                {
+                    <div class="card mb-2">
+                        <div class="card-header p-1" style="height: 2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" asp-page="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
+                            <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                            <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
+                            <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn" type="button" asp-page="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                }
+
+            }
+
+        </div>
+
+        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center">
+                <h5 class="card-title">
+                    Done
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" asp-page="CreateUserStory" asp-route-id="3">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.Done)
+                {
+                    <div class="card mb-2">
+                        <div class="card-header p-1" style="height: 2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" asp-page="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
+                            <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                            <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
+                            <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn" type="button" asp-page="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                }
+
+            }
+
+        </div>
+
+        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center">
+                <h5 class="card-title">
+                    Done Done
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" asp-page="CreateUserStory" asp-route-id="4">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.Done_Done)
+                {
+                    <div class="card mb-2">
+                        <div class="card-header p-1" style="height: 2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" asp-page="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
+                            <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                            <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
+                            <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn"><i class="fa fa-arrow-right" style="visibility: hidden"></i></a>
+                        </div>
+                    </div>
+                }
+
+            }
+
+        </div>
+
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form method="post" enctype="multipart/form-data">
+
+                    <input type="hidden" asp-for="UserStory.Id" />
+                    <div class="modal-header">
+                        <div class="form-group">
+                            <label asp-for="@Model.UserStory.Title" class="control-label"></label>
+                            <input asp-for="@Model.UserStory.Title" class="form-control" />
+                            <span asp-validation-for="@Model.UserStory.Title" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label asp-for="@Model.UserStory.Description" class="control-label"></label>
+                            <textarea asp-for="@Model.UserStory.Description" class="form-control" rows="8" id="textarea"></textarea>
+                            <span asp-validation-for="@Model.UserStory.Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="@Model.UserStory.BusinessValue" class="control-label"></label>
+                            <select class="form control" asp-for="UserStory.BusinessValue">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="@Model.UserStory.Priority" class="control-label"></label>
+                            <select class="form control" asp-for="UserStory.Priority">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="@Model.UserStory.StoryPoints" class="control-label"></label>
+                            <select class="form-control" asp-for="UserStory.StoryPoints" asp-items="@Model.StoryPoints"></select>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer align-content-center">
+                        <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="UserStories">Cancel</a>
+                        <input id="Create User Story" type="submit" value="Create" class="btn btn-success" style="width: 15rem" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal({ backdrop: "static" });
+            $("#myModal").modal('show');
+        });
+    </script>
+}
