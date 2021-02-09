@@ -18,13 +18,19 @@ function onDragOver(event) {
 
 function onDrop(event) {
     //Placeholder js
+    //Placeholder js
     const id = event
         .dataTransfer
         .getData('text');
     var draggableElement = document.getElementById(id);
     const dropzone = event.target;
-    dropzone.appendChild(draggableElement);
-    event
-        .dataTransfer
-        .clearData()
+    let dropzoneParent = dropzone.parentElement;
+    if (draggableElement.className === dropzone.className) {
+        dropzone.appendChild(draggableElement);
+        event
+            .dataTransfer
+            .clearData()
+    } else {
+        dropzone.appendChild(sourceIdEl);
+    }
 }
