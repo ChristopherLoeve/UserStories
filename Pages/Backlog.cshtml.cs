@@ -20,13 +20,7 @@ namespace UserStories.Pages
         }
         public void OnGet()
         {
-            UserStories = userStoryService.GetUserStories();
-        }
-
-        public void OnGetMoveLeft(int id)
-        {
-            userStoryService.MoveStoryLeft(id);
-            OnGet();
+            UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
         }
 
         public void OnGetMoveRight(int id)

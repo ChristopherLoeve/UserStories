@@ -12,12 +12,17 @@ namespace UserStories.Pages
     public class UserStoriesModel : PageModel
     {
         public UserStoryService userStoryService;
-        public List<UserStory> UserStories { get; private set; }
-        
+        public List<UserStory> ToDoStories { get; private set; }
+        public List<UserStory> DoingStories { get; private set; }
+        public List<UserStory> DoneStories { get; private set; }
+        public List<UserStory> DoneDoneList { get; private set; }
+
+
 
         public UserStoriesModel(UserStoryService userStoryService)
         {
             this.userStoryService = userStoryService;
+
         }
 
 

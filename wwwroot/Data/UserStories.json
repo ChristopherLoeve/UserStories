@@ -17,7 +17,7 @@
     "CreationDate": "2021-02-08T10:36:00.4346772+01:00",
     "Priority": 2,
     "StoryPoints": 0,
-    "Column": 0
+    "Column": 3
   },
   {
     "Id": 3,
@@ -27,7 +27,7 @@
     "CreationDate": "2021-02-08T10:48:41.6182209+01:00",
     "Priority": 2,
     "StoryPoints": 1,
-    "Column": 0
+    "Column": 3
   },
   {
     "Id": 4,
@@ -87,7 +87,7 @@
     "CreationDate": "2021-02-08T10:54:32.1649787+01:00",
     "Priority": 4,
     "StoryPoints": 1,
-    "Column": 0
+    "Column": 1
   },
   {
     "Id": 10,
@@ -97,16 +97,6 @@
     "CreationDate": "2021-02-08T10:55:23.2088951+01:00",
     "Priority": 4,
     "StoryPoints": 1,
-    "Column": 0
-  },
-  {
-    "Id": 11,
-    "Title": "test",
-    "Description": "As \r\nI want to \r\nSo \r\n\r\nAcceptance Criteria:\r\nGiven that \r\nWhen I \r\nThen I ",
-    "BusinessValue": 1,
-    "CreationDate": "2021-02-09T11:12:03.2595629+01:00",
-    "Priority": 1,
-    "StoryPoints": 0,
-    "Column": 0
+    "Column": 1
   }
 ]
