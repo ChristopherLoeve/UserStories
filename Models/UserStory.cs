@@ -15,7 +15,8 @@ namespace UserStories.Models
 
     public enum Column
     {
-        To_Do = 1,
+        Backlog,
+        To_Do,
         Doing,
         Done,
         Done_Done
