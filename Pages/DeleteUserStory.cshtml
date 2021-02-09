@@ -2,6 +2,7 @@
 @using UserStories.Models
 @model UserStories.Pages.DeleteUserStoryModel
 @{
+    Layout = Model.LayoutPage;
     ViewData["Title"] = "Delete " + @Model.UserStory.Title;
     <h1 class="text-center">User Stories</h1>
 
