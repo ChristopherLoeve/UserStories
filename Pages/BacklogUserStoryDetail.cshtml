@@ -7,24 +7,22 @@
         Backlog
         <span class="p-lg-1">
             <a class="btn" type="button" asp-page="BacklogCreateUserStory" asp-route-id="0">
-                <i class="fa fa-plus" aria-hidden="true"></i>
+                <i class="fa fa-plus" aria-hidden="true"></i> <b> Add New</b>
             </a>
         </span>
     </h1>
 
-    <div class="card mb-2 align-content-center" style="width: 50%; padding: 5px; border: none;">
-
-        <div class="p-1"></div>
+    <div class="card-columns">
 
         @foreach (var userStory in @Model.UserStories)
         {
-    
+
             <div class="card mb-2">
                 <div class="card-header p-1" style="height:2rem">
                     <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
                 </div>
-                <div class="card-body">
-                    <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                <div class="card-body p-0">
+                    <p class="card-text" style="height: 15rem; white-space: pre-line; padding-left: 5px; padding-right: 5px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 10; -webkit-box-orient: vertical;">@userStory.Description</p>
                 </div>
                 <div class="card-footer" align="content-center">
                     <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
@@ -34,7 +32,7 @@
                     <a class="btn" type="button" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
                 </div>
             </div>
-    
+
         }
     </div>
 

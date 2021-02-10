@@ -6,6 +6,6 @@
     "Password": "12345678",
     "FullName": "Oscar Hemmingsen",
     "ProgrammerId": 1,
-    "LoggedIn": false
+    "LoggedIn": true
   }
 ]
