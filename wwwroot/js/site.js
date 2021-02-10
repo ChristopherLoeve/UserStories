@@ -3,34 +3,18 @@
 
 // Write your Javascript code.
 
-function onDragStart(event) {
-    event
-        .dataTransfer
-        .setData('text/plain', event.target.id);
-    event
-        .currentTarget
-        .style
-}
+//const card = document.querySelectorAll('.card mb-2');
+//const dropzone = document.querySelectorAll('dropzone');
 
-function onDragOver(event) {
-    event.preventDefault();
-}
+//// Listerners
+//card.addEventListener('dragstart', dragStart);
+//card.addEventListener('dragend', dragEnd);
 
-function onDrop(event) {
-    //Placeholder js
-    //Placeholder js
-    const id = event
-        .dataTransfer
-        .getData('text');
-    var draggableElement = document.getElementById(id);
-    const dropzone = event.target;
-    let dropzoneParent = dropzone.parentElement;
-    if (draggableElement.className === dropzone.className) {
-        dropzone.appendChild(draggableElement);
-        event
-            .dataTransfer
-            .clearData()
-    } else {
-        dropzone.appendChild(sourceIdEl);
-    }
-}
+//function dragStart() {
+//    setTimeout(() => (this.className = 'invisible'), 0);
+//    console.log('Hello');
+//}
+
+//function dragEnd() {
+
+//}

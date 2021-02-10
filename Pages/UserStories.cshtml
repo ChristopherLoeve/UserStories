@@ -4,8 +4,10 @@
 @{
     ViewData["Title"] = "User Stories";
     <h1 class="text-center">User Stories</h1>
-    <div class="card-group" ondragover="onDragOver(event);" ondrop="onDrop(event);">
-        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+    <div class="card-group">
+
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
+
             <div class="card-header p-2 text-center">
                 <h5 class="card-title">
                     To do
@@ -23,7 +25,7 @@
             {
                 @if (userStory.Column == Column.To_Do)
                 {
-                    <div class="card mb-2" draggable="true" ondragstart="onDragStart(event)" id="@userStory.Id">
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height:2rem">
                             <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
                         </div>
@@ -31,7 +33,7 @@
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
                         <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
-                            <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
+                            <a class="btn" type="button" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
                             <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
                             <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
                             <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
@@ -39,11 +41,13 @@
                         </div>
                     </div>
                 }
+
             }
+            <div class="empty"></div>
 
         </div>
 
-        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
 
             <div class="card-header p-2 text-center">
                 <h5 class="card-title">
@@ -62,7 +66,7 @@
             {
                 @if (userStory.Column == Column.Doing)
                 {
-                    <div class="card mb-2" draggable="true" ondragstart="onDragStart(event)" id="@userStory.Id">
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
                             <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
                         </div>
@@ -78,11 +82,13 @@
                         </div>
                     </div>
                 }
+
             }
+            <div class="empty"></div>
 
         </div>
 
-        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
 
             <div class="card-header p-2 text-center">
                 <h5 class="card-title">
@@ -101,7 +107,7 @@
             {
                 @if (userStory.Column == Column.Done)
                 {
-                    <div class="card mb-2" draggable="true" ondragstart="onDragStart(event)" id="@userStory.Id">
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
                             <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
                         </div>
@@ -117,9 +123,13 @@
                         </div>
                     </div>
                 }
+
             }
+            <div class="empty"></div>
+
         </div>
-        <div class="card mb-2" style="width: 25%; padding: 5px; border: none">
+
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
 
             <div class="card-header p-2 text-center">
                 <h5 class="card-title">
@@ -138,7 +148,7 @@
             {
                 @if (userStory.Column == Column.Done_Done)
                 {
-                    <div class="card mb-2" draggable="true" ondragstart="onDragStart(event)" id="@userStory.Id">
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
                             <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
                         </div>
@@ -156,9 +166,10 @@
                 }
 
             }
+            <div class="empty"></div>
 
         </div>
+
     </div>
-
-
 }
+<script src="~/js/dragNDrop.js"></script>
