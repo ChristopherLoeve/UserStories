@@ -23,7 +23,7 @@ namespace UserStories.Pages
         }
         public void OnGet()
         {
-            UserStories = userStoryService.GetUserStories();
+            UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
             LayoutPage = ProgrammerRepository.GetProgrammerLayout();
         }
 

@@ -5,36 +5,37 @@
     Layout = Model.LayoutPage;
 }
 
-<h1>Backlog</h1>
+<h1>
+    Backlog
+    <span class="p-lg-1">
+        <a class="btn" type="button" asp-page="BacklogCreateUserStory" asp-route-id="0">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+    </span>
+</h1>
 
-<a asp-page="CreateUserStory" asp-route-id="0">Create new userstory in the backlog</a>
-
-<div class="card mb-2" style="width: 25%; padding: 5px; border: none;">
-    <div class="card-header p-2 text-center">
-        <h5 class="card-title">Backlog</h5>
-    </div>
+<div class="card mb-2 align-content-center" style="width: 50%; padding: 5px; border: none;">
 
     <div class="p-1"></div>
 
-    @foreach (var userstory in @Model.UserStories)
+    @foreach (var userStory in @Model.UserStories)
     {
-        @if (userstory.Column == Column.Backlog)
-        {
-            <div class="card mb-2">
-                <div class="card-header p-2">
-                    <h5 class="card-title">(@userstory.Id) @userstory.Title</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">@userstory.Description</p>
-                </div>
-                <div class="card-footer" align="content-center">
-                    <a class="btn" type="button" asp-page-handler="MoveLeft" asp-route-id="@userstory.Id"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
-                    <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userstory.Id"><i class="fa fa-info-circle"></i></a>
-                    <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userstory.Id"><i class="fa fa-trash"></i></a>
-                    <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userstory.Id"><i class="fa fa-edit"></i></a>
-                    <a class="btn" type="button" asp-page-handler="MoveRight" asp-route-id="@userstory.Id"><i class="fa fa-arrow-right"></i></a>
-                </div>
+    
+        <div class="card mb-2">
+            <div class="card-header p-1" style="height:2rem">
+                <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
             </div>
-        }
+            <div class="card-body">
+                <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+            </div>
+            <div class="card-footer" align="content-center">
+                <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
+                <a class="btn" type="button" asp-page="BacklogUserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                <a class="btn" type="button" asp-page="BacklogDeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                <a class="btn" type="button" asp-page="BacklogEditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit"></i></a>
+                <a class="btn" type="button" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+            </div>
+        </div>
+    
     }
 </div>

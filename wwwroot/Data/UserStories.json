@@ -1,15 +1,5 @@
 [
   {
-    "Id": 1,
-    "Title": "Due Date",
-    "Description": "As a user\r\nI want to be able to give my user story a due date\r\nSo that I can schedule my user stories\r\n\r\nAcceptance criteria\r\nGiven that I can set a due date for my user stories\r\nWhen I give them a due date on creation or edit\r\nThen the user story should be set to be due on a specific date",
-    "BusinessValue": 7,
-    "CreationDate": "2021-02-08T10:35:28.9440471+01:00",
-    "Priority": 4,
-    "StoryPoints": 1,
-    "Column": 1
-  },
-  {
     "Id": 2,
     "Title": "Change Status",
     "Description": "As a user\r\nI want to be able change the status of my user stories\r\nSo that I can update the status of a user story\r\n\r\nAcceptance criteria\r\nGiven that I can choose to change the status of a user story\r\nWhen I click the change status button\r\nThen I should be able to give the user story a new status",

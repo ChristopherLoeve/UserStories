@@ -74,7 +74,7 @@ namespace UserStories.Services
             jsonFileUserStoryService.SaveJsonUserStories(userStories);
         }
 
-        public List<UserStory> GetListByColumn(Column column)
+        public List<UserStory> GetUserStoriesByColumn(Column column)
         {
             List<UserStory> list = new List<UserStory>();
             foreach (UserStory us in userStories)
@@ -132,6 +132,11 @@ namespace UserStories.Services
         {
             jsonFileUserStoryService.ResetToTemplate();
             userStories = jsonFileUserStoryService.GetJsonUserStories().ToList();
+        }
+
+        public void SaveAsTemplate()
+        {
+            jsonFileUserStoryService.SaveAsTemplate(userStories);
         }
 
     }

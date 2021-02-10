@@ -37,7 +37,7 @@ namespace UserStories.Services
             }
         }
 
-        public void SaveJsonUserStories(List<UserStory> userStories)
+        public void SaveJsonUserStories(List<UserStory> userStories) 
         {
             using (var jsonFileWriter = File.Create(JsonFileName))
             {
@@ -59,6 +59,19 @@ namespace UserStories.Services
             }
 
             using (var jsonFileWriter = File.Create(JsonFileName))
+            {
+                var jsonWriter = new Utf8JsonWriter(jsonFileWriter, new JsonWriterOptions()
+                {
+                    SkipValidation = false,
+                    Indented = true
+                });
+                JsonSerializer.Serialize<UserStory[]>(jsonWriter, userStories.ToArray());
+            }
+        }
+
+        public void SaveAsTemplate(List<UserStory> userStories)
+        {
+            using (var jsonFileWriter = File.Create(JsonTemplateName))
             {
                 var jsonWriter = new Utf8JsonWriter(jsonFileWriter, new JsonWriterOptions()
                 {
