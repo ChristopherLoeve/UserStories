@@ -9,10 +9,10 @@ namespace UserStories.Services
     public class UserStoryService
     {
         private List<UserStory> userStories;
-        private JsonFileUserStoryService jsonFileUserStoryService { get; set; }
+        private JsonFileService jsonFileUserStoryService { get; set; }
 
 
-        public UserStoryService(JsonFileUserStoryService jsonFileUserStoryService)
+        public UserStoryService(JsonFileService jsonFileUserStoryService)
         {
             this.jsonFileUserStoryService = jsonFileUserStoryService;
             userStories = this.jsonFileUserStoryService.GetJsonUserStories().ToList();
@@ -126,6 +126,25 @@ namespace UserStories.Services
                     break;
             }
             jsonFileUserStoryService.SaveJsonUserStories(userStories);
+        }
+        public void MoveColumnUp(UserStory userStory)
+        {
+            if (userStory.Column == Column.To_Do)
+            {
+                userStory.Column = Column.Doing;
+            }
+            else if (userStory.Column == Column.Doing)
+            {
+                userStory.Column = Column.Done;
+            }
+            else if (userStory.Column == Column.Done)
+            {
+                userStory.Column = Column.Done_Done;
+            }
+            else if (userStory.Column == Column.Done_Done)
+            {
+                userStory.Column = Column.To_Do;
+            }
         }
 
         public void ResetToTemplate()

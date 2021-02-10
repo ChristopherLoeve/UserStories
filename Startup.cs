@@ -29,6 +29,8 @@ namespace UserStories
             services.AddSingleton<JsonFileUserStoryService, JsonFileUserStoryService>();
             services.AddSingleton<ProgrammerData, ProgrammerData>();
             services.AddSingleton<ProgrammerRepository, ProgrammerRepository>();
+            services.AddSingleton<JsonFileService, JsonFileService>();
+            services.AddSingleton<FixesService, FixesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
