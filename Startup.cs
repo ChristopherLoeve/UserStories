@@ -26,7 +26,8 @@ namespace UserStories
         {
             services.AddRazorPages();
             services.AddSingleton<UserStoryService, UserStoryService>();
-            services.AddSingleton<JsonFileUserStoryService, JsonFileUserStoryService>();
+            services.AddSingleton<JsonFileService, JsonFileService>();
+            services.AddSingleton<FixesService, FixesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

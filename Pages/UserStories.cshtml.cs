@@ -37,5 +37,6 @@ namespace UserStories.Pages
             userStoryService.MoveStoryRight(id);
             UserStories = userStoryService.GetUserStories();
         }
+        
     }
 }

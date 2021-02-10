@@ -1,0 +1,42 @@
+﻿@page
+@model UserStories.Pages.Shared.FixesModel
+@{
+}
+
+<h1 class="text-center">Nogle problemer der skal fixes måske? hahaha J/K... unless?</h1>
+
+<div class="card-deck">
+    @foreach (var Fix in Model.Fixes)
+    {
+        <div class="m-3" style="width: 25%;">
+            <div class="card-header">
+                <p>
+                    Title: @Fix.Title
+                </p>
+            </div>
+            <div class="card-body p-1" style="max-width: 100%; overflow: hidden; text-overflow: ellipsis">
+                <p>
+                    Description: @Fix.Description
+                </p>
+            </div>
+            <div class="card-footer">
+                @if (Fix.Fixed == true)
+                {
+                    <p>
+                        Fixed?: Been there done that
+                    </p>
+                }
+                else
+                {
+                    <p>Fixed?: Not fixed yet</p>
+                }
+            </div>
+            <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                <a class="btn" type="button" asp-page="DeleteFix" asp-route-id="@Fix.Id"><i class="fa fa-trash"></i></a>
+                <a class="btn" type="button" asp-page="EditFix" asp-route-id="@Fix.Id"><i class="fa fa-cog"></i></a>
+            </div>
+        </div>
+    }
+</div>
+
+<a class="btn" type="button" asp-page="Fix add"><i class="fa fa-plus"></i></a>

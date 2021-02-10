@@ -9,12 +9,12 @@ using UserStories.Models;
 
 namespace UserStories.Services
 {
-    public class JsonFileUserStoryService
+    public class JsonFileService
     {
 
         public IWebHostEnvironment WebHostEnvironment { get; }
 
-        public JsonFileUserStoryService(IWebHostEnvironment webHostEnvironment)
+        public JsonFileService(IWebHostEnvironment webHostEnvironment)
         {
             WebHostEnvironment = webHostEnvironment;
         }
@@ -24,10 +24,17 @@ namespace UserStories.Services
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "UserStories.json"); }
         }
 
+        private string JsonFixesFileName
+        {
+            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "Fixes.json"); }
+        }
+
         private string JsonTemplateName
         {
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "UserStoriesTemplate.json"); }
         }
+
+
 
         public IEnumerable<UserStory> GetJsonUserStories()
         {
@@ -47,6 +54,27 @@ namespace UserStories.Services
                     Indented = true
                 });
                 JsonSerializer.Serialize<UserStory[]>(jsonWriter, userStories.ToArray());
+            }
+        }
+
+        public IEnumerable<Fix> GetJsonFixes()
+        {
+            using (var jsonFileReader = File.OpenText(JsonFixesFileName))
+            {
+                return JsonSerializer.Deserialize<Fix[]>(jsonFileReader.ReadToEnd());
+            }
+        }
+
+        public void SaveJsonFixes(List<Fix> fixes)
+        {
+            using (var jsonFileWriter = File.Create(JsonFixesFileName))
+            {
+                var jsonWriter = new Utf8JsonWriter(jsonFileWriter, new JsonWriterOptions()
+                {
+                    SkipValidation = false,
+                    Indented = true
+                });
+                JsonSerializer.Serialize<Fix[]>(jsonWriter, fixes.ToArray());
             }
         }
 
