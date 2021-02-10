@@ -1,0 +1,79 @@
+﻿@page
+@using UserStories.Models
+@model UserStories.Pages.BacklogUserStoryDetailModel
+@{
+    
+    <h1>
+        Backlog
+        <span class="p-lg-1">
+            <a class="btn" type="button" asp-page="BacklogCreateUserStory" asp-route-id="0">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </a>
+        </span>
+    </h1>
+
+    <div class="card mb-2 align-content-center" style="width: 50%; padding: 5px; border: none;">
+
+        <div class="p-1"></div>
+
+        @foreach (var userStory in @Model.UserStories)
+        {
+    
+            <div class="card mb-2">
+                <div class="card-header p-1" style="height:2rem">
+                    <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                </div>
+                <div class="card-footer" align="content-center">
+                    <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
+                    <a class="btn" type="button" asp-page="BacklogUserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                    <a class="btn" type="button" asp-page="BacklogDeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                    <a class="btn" type="button" asp-page="BacklogEditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit"></i></a>
+                    <a class="btn" type="button" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+    
+        }
+    </div>
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">@Model.UserStory.Title</h5>
+                </div>
+
+                <div class="modal-body">
+                    <p><b>Description:</b></p>
+                    <p style="white-space: pre-line">@Model.UserStory.Description</p>
+                    <p><b>Priority:</b> @Model.UserStory.Priority</p>
+                    <p><b>Business value:</b> @Model.UserStory.BusinessValue</p>
+                    <p><b>Story points:</b> @Model.UserStory.StoryPoints.ToString().Replace('_', ' ')</p>
+                    <p><b>Status:</b> @Model.UserStory.Column.ToString().Replace('_', ' ')</p>
+                    <p><b>Creation date:</b> @Model.UserStory.CreationDate</p>
+                </div>
+
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-danger" style="width: 10rem" asp-page="Backlog">Close</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal({ backdrop: "static" });
+            $("#myModal").modal('show');
+        });
+    </script>
+}
