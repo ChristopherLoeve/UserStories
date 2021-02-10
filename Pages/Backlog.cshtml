@@ -7,7 +7,7 @@
 <h1>
     Backlog
     <span class="p-lg-1">
-        <a class="btn" type="button" asp-page="CreateUserStory" asp-route-id="0">
+        <a class="btn" type="button" asp-page="BacklogCreateUserStory" asp-route-id="0">
             <i class="fa fa-plus" aria-hidden="true"></i>
         </a>
     </span>
@@ -29,9 +29,9 @@
             </div>
             <div class="card-footer" align="content-center">
                 <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
-                <a class="btn" type="button" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
-                <a class="btn" type="button" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
-                <a class="btn" type="button" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit"></i></a>
+                <a class="btn" type="button" asp-page="BacklogUserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
+                <a class="btn" type="button" asp-page="BacklogDeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                <a class="btn" type="button" asp-page="BacklogEditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit"></i></a>
                 <a class="btn" type="button" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
