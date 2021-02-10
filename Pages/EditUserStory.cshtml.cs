@@ -12,14 +12,17 @@ namespace UserStories.Pages
 {
     public class EditUserStoryModel : PageModel
     {
+        public ProgrammerRepository ProgrammerRepository { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
+        public string LayoutPage { get; set; }
 
-        public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper)
+        public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerRepository programmerRepository)
         {
+            ProgrammerRepository = programmerRepository;
             this.userStoryService = userStoryService;
             this.htmlHelper = htmlHelper;
         }
@@ -29,6 +32,7 @@ namespace UserStories.Pages
             UserStories = userStoryService.GetUserStories();
             UserStory = userStoryService.GetUserStory(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
+            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

@@ -11,8 +11,10 @@ namespace UserStories.Pages
 {
     public class UserStoriesModel : PageModel
     {
+        public ProgrammerRepository ProgrammerRepository { get; private set; }
         public UserStoryService userStoryService;
         public List<UserStory> UserStories { get; private set; }
+        public string LayoutPage { get; set; }
         public List<UserStory> ToDoStories { get; private set; }
         public List<UserStory> DoingStories { get; private set; }
         public List<UserStory> DoneStories { get; private set; }
@@ -20,27 +22,30 @@ namespace UserStories.Pages
 
 
 
-        public UserStoriesModel(UserStoryService userStoryService)
+        public UserStoriesModel(UserStoryService userStoryService, ProgrammerRepository programmerRepository)
         {
+            ProgrammerRepository = programmerRepository;
             this.userStoryService = userStoryService;
-
         }
 
 
         public void OnGet()
         {
             UserStories = userStoryService.GetUserStories();
+            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
         }
 
         public void OnGetMoveLeft(int id)
         {
             userStoryService.MoveStoryLeft(id);
+            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
             OnGet();
         }
 
         public void OnGetMoveRight(int id)
         {
             userStoryService.MoveStoryRight(id);
+            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
             OnGet();
         }
     }

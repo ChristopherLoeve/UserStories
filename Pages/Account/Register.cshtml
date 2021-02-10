@@ -1,0 +1,33 @@
+﻿@page
+@model UserStories.Pages.Account.RegisterModel
+@{
+}
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Programmer.FirstName"></label>
+        <input asp-for="Programmer.FirstName" class="form-control" />
+        <span class="text-danger" asp-validation-for="Programmer.FirstName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Programmer.LastName"></label>
+        <input asp-for="Programmer.LastName" class="form-control" />
+        <span class="text-danger" asp-validation-for="Programmer.LastName"></span> @*This displays error message, if input is wrong.*@
+    </div>
+    <div class="form-group">
+        <label asp-for="Programmer.Email"></label>
+        <input asp-for="Programmer.Email" class="form-control" />
+        <span class="text-danger" asp-validation-for="Programmer.Email"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Programmer.Password"></label>
+        <input type="password" asp-for="Programmer.Password" class="form-control" />
+        <span class="text-danger" asp-validation-for="Programmer.Password"></span>
+    </div>
+    <input type="submit" value="Register" class="btn btn-outline-primary" />
+</form>
