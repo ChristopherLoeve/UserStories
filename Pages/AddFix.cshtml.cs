@@ -9,13 +9,13 @@ using UserStories.Services;
 
 namespace UserStories.Pages
 {
-    public class Fix_addModel : PageModel
+    public class AddFixModel : PageModel
     {
         private FixesService fixesService; 
         
         [BindProperty] public Fix fix { get; set; }
 
-        public Fix_addModel(FixesService fixesService)
+        public AddFixModel(FixesService fixesService)
         {
             this.fixesService = fixesService;
         }

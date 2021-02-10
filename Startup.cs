@@ -26,7 +26,6 @@ namespace UserStories
         {
             services.AddRazorPages();
             services.AddSingleton<UserStoryService, UserStoryService>();
-            services.AddSingleton<JsonFileUserStoryService, JsonFileUserStoryService>();
             services.AddSingleton<ProgrammerData, ProgrammerData>();
             services.AddSingleton<ProgrammerRepository, ProgrammerRepository>();
             services.AddSingleton<JsonFileService, JsonFileService>();
