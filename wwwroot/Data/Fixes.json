@@ -1,41 +1,5 @@
 [
   {
-    "Id": 5,
-    "Title": "badabing",
-    "Description": "Fix siden skal v\u00E6re nice at kigge p\u00E5asdasdasssssssssssssssssssssssssssssssssssssssssssssssss",
-    "Fixed": false
-  },
-  {
-    "Id": 3,
-    "Title": "e",
-    "Description": null,
-    "Fixed": false
-  },
-  {
-    "Id": 5,
-    "Title": "badabing",
-    "Description": "Fix siden skal v\u00E6re nice at kigge p\u00E5asdasdasssssssssssssssssssssssssssssssssssssssssssssssss",
-    "Fixed": false
-  },
-  {
-    "Id": 7,
-    "Title": null,
-    "Description": null,
-    "Fixed": false
-  },
-  {
-    "Id": 9,
-    "Title": null,
-    "Description": null,
-    "Fixed": false
-  },
-  {
-    "Id": 11,
-    "Title": null,
-    "Description": null,
-    "Fixed": false
-  },
-  {
     "Id": 13,
     "Title": null,
     "Description": null,

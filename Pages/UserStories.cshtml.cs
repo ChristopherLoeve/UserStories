@@ -38,14 +38,12 @@ namespace UserStories.Pages
         public void OnGetMoveLeft(int id)
         {
             userStoryService.MoveStoryLeft(id);
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
             OnGet();
         }
 
         public void OnGetMoveRight(int id)
         {
             userStoryService.MoveStoryRight(id);
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
             OnGet();
         }
         
