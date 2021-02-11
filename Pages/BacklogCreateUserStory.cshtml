@@ -6,8 +6,8 @@
     <h1>
         Backlog
         <span class="p-lg-1">
-            <a class="btn" type="button" asp-page="BacklogCreateUserStory" asp-route-id="0">
-                <i class="fa fa-plus" aria-hidden="true"></i> <b> Add New</b>
+            <a class="btn" type="button" style="color: grey" data-toggle="tooltip" data-placement="bottom" title="Add new user story to Backlog" asp-page="BacklogCreateUserStory" asp-route-id="0">
+                <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i> <b>Add New</b>
             </a>
         </span>
     </h1>
@@ -19,17 +19,17 @@
 
             <div class="card mb-2">
                 <div class="card-header p-1" style="height:2rem">
-                    <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1">@userStory.Priority</span></h5>
+                    <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                 </div>
                 <div class="card-body p-0">
                     <p class="card-text" style="height: 15rem; white-space: pre-line; padding-left: 5px; padding-right: 5px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 10; -webkit-box-orient: vertical;">@userStory.Description</p>
                 </div>
-                <div class="card-footer" align="content-center">
+                <div class="card-footer" style="align-content: center">
                     <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
-                    <a class="btn" type="button" asp-page="BacklogUserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
-                    <a class="btn" type="button" asp-page="BacklogDeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
-                    <a class="btn" type="button" asp-page="BacklogEditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit"></i></a>
-                    <a class="btn" type="button" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                    <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="BacklogUserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                    <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="BacklogEditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                    <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="BacklogDeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                    <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Sprint" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
                 </div>
             </div>
 

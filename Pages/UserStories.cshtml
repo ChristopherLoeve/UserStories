@@ -15,7 +15,7 @@
                     To Do
                     <span class="float-right p-lg-1">
                         <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;To Do&quot;" asp-page="CreateUserStory" asp-route-id="1">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
                         </a>
                     </span>
                 </h5>
@@ -36,10 +36,10 @@
                         </div>
                         <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Backlog" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
                         </div>
                     </div>
                 }
@@ -53,7 +53,7 @@
                     Doing
                     <span class="float-right p-lg-1">
                         <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;Doing&quot;" asp-page="CreateUserStory" asp-route-id="2">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
                         </a>
                     </span>
                 </h5>
@@ -73,11 +73,11 @@
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
                         <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;To Do&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;To Do&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
                         </div>
                     </div>
                 }
@@ -91,7 +91,7 @@
                     Done
                     <span class="float-right p-lg-1">
                         <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;Done&quot;" asp-page="CreateUserStory" asp-route-id="3">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
                         </a>
                     </span>
                 </h5>
@@ -111,11 +111,11 @@
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
                         <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done Done&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done Done&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
                         </div>
                     </div>
                 }
@@ -129,7 +129,7 @@
                     Done Done
                     <span class="float-right p-lg-1">
                         <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;Done Done&quot;"  asp-page="CreateUserStory" asp-route-id="4">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
                         </a>
                     </span>
                 </h5>
@@ -149,10 +149,10 @@
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
                         <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
                             <a class="btn"><i class="fa fa-arrow-right" style="visibility: hidden"></i></a>
                         </div>
                     </div>
