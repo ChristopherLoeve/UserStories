@@ -35,7 +35,7 @@
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
                         <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
-                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Backlog" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Backlog" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-cog"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash"></i></a>
