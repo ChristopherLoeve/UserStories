@@ -10,18 +10,18 @@ namespace UserStories.Services
     public class FixesService
     {
         private List<Fix> fixes;
-        private JsonFileService JsonFileUserStoryService { get; set; }
+        private JsonFileService jsonFileService { get; set; }
 
         public FixesService(JsonFileService jsonFileUserStoryService)
         {
-            JsonFileUserStoryService = jsonFileUserStoryService;
-            fixes = this.JsonFileUserStoryService.GetJsonFixes().ToList();
+            jsonFileService = jsonFileUserStoryService;
+            fixes = this.jsonFileService.GetJsonFixes().ToList();
         }
 
         public void AddFix(Fix fix)
         {
             fixes.Add(fix);
-            JsonFileUserStoryService.SaveJsonFixes(fixes);
+            jsonFileService.SaveJsonFixes(fixes);
         }
 
         public Fix GetFix(int id)
@@ -54,13 +54,13 @@ namespace UserStories.Services
                     f.Fixed = fix.Fixed;
                 }
             }
-            JsonFileUserStoryService.SaveJsonFixes(fixes);
+            jsonFileService.SaveJsonFixes(fixes);
         }
 
         public void DeleteFix(Fix fix)
         {
             fixes.Remove(fix);
-            JsonFileUserStoryService.SaveJsonFixes(fixes);
+            jsonFileService.SaveJsonFixes(fixes);
         }
 
     }

@@ -9,13 +9,13 @@ namespace UserStories.Services
     public class UserStoryService
     {
         private List<UserStory> userStories;
-        private JsonFileService jsonFileUserStoryService { get; set; }
+        private JsonFileService jsonFileService { get; set; }
 
 
         public UserStoryService(JsonFileService jsonFileUserStoryService)
         {
-            this.jsonFileUserStoryService = jsonFileUserStoryService;
-            userStories = this.jsonFileUserStoryService.GetJsonUserStories().ToList();
+            this.jsonFileService = jsonFileService;
+            userStories = this.jsonFileService.GetJsonUserStories().ToList();
         }
 
         public void AddUserStory(UserStory userStory)
@@ -24,7 +24,7 @@ namespace UserStories.Services
             else userStory.Id = 1;
             
             userStories.Add(userStory);
-            jsonFileUserStoryService.SaveJsonUserStories(userStories);
+            jsonFileService.SaveJsonUserStories(userStories);
         }
 
         public UserStory GetUserStory(int id)
@@ -52,7 +52,7 @@ namespace UserStories.Services
                 userStories.Remove(userstoryToBeDeleted);
             }
 
-            jsonFileUserStoryService.SaveJsonUserStories(userStories);
+            jsonFileService.SaveJsonUserStories(userStories);
             return userstoryToBeDeleted;
         }
 
@@ -71,7 +71,7 @@ namespace UserStories.Services
                 }
             }
 
-            jsonFileUserStoryService.SaveJsonUserStories(userStories);
+            jsonFileService.SaveJsonUserStories(userStories);
         }
 
         public List<UserStory> GetUserStoriesByColumn(Column column)
@@ -103,7 +103,7 @@ namespace UserStories.Services
                     userStory.Column = Column.Done;
                     break;
             }
-            jsonFileUserStoryService.SaveJsonUserStories(userStories);
+            jsonFileService.SaveJsonUserStories(userStories);
         }
 
         public void MoveStoryRight(int id)
@@ -125,7 +125,7 @@ namespace UserStories.Services
                     userStory.Column = Column.Done_Done;
                     break;
             }
-            jsonFileUserStoryService.SaveJsonUserStories(userStories);
+            jsonFileService.SaveJsonUserStories(userStories);
         }
         public void MoveColumnUp(UserStory userStory)
         {
@@ -149,13 +149,13 @@ namespace UserStories.Services
 
         public void ResetToTemplate()
         {
-            jsonFileUserStoryService.ResetToTemplate();
-            userStories = jsonFileUserStoryService.GetJsonUserStories().ToList();
+            jsonFileService.ResetToTemplate();
+            userStories = jsonFileService.GetJsonUserStories().ToList();
         }
 
         public void SaveAsTemplate()
         {
-            jsonFileUserStoryService.SaveAsTemplate(userStories);
+            jsonFileService.SaveAsTemplate(userStories);
         }
 
     }
