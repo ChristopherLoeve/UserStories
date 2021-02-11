@@ -7,5 +7,14 @@
     "FullName": "Oscar Hemmingsen",
     "ProgrammerId": 1,
     "LoggedIn": true
+  },
+  {
+    "FirstName": "John",
+    "LastName": "Faggot",
+    "Email": "John@fgtmail.org",
+    "Password": "87654321",
+    "FullName": "John Faggot",
+    "ProgrammerId": 2,
+    "LoggedIn": true
   }
 ]

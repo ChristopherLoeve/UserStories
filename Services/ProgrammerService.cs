@@ -4,17 +4,17 @@ using UserStories.Models;
 
 namespace UserStories.Services
 {
-    public class ProgrammerRepository
+    public class ProgrammerService
     {
         private readonly List<Programmer> programmers;
-        public ProgrammerData ProgrammerData { get; set; }
+        public JsonFileService JsonFileService { get; set; }
         public static Programmer Programmer { get; set; }
 
-        public ProgrammerRepository(ProgrammerData programmerData)
+        public ProgrammerService(JsonFileService jsonFileService)
         {
-            ProgrammerData = programmerData;
+            JsonFileService = jsonFileService;
 
-            programmers = ProgrammerData.GetProgrammers().ToList();
+            programmers = JsonFileService.GetProgrammers().ToList();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace UserStories.Services
         public void AddProgrammer(Programmer programmer)
         {
             programmers.Add(programmer);
-            ProgrammerData.Save(programmers);
+            JsonFileService.Save(programmers);
         }
         /// <summary>
         /// Gets current logged in user.
@@ -95,7 +95,7 @@ namespace UserStories.Services
 
         public void Commit()
         {
-            ProgrammerData.Save(programmers);
+            JsonFileService.Save(programmers);
         }
     }
 }

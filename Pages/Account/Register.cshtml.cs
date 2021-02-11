@@ -11,7 +11,7 @@ namespace UserStories.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly ProgrammerRepository programmerRepository;
+        private readonly ProgrammerService programmerService;
 
         [TempData] // Binds line 38 to Message property below, this ensures it will only show one time as TempData is cleared.
         public string Message { get; set; }
@@ -19,9 +19,9 @@ namespace UserStories.Pages.Account
         public new Programmer Programmer { get; set; }
 
 
-        public RegisterModel(ProgrammerRepository programmerRepository)
+        public RegisterModel(ProgrammerService programmerService)
         {
-            this.programmerRepository = programmerRepository;
+            this.programmerService = programmerService;
         }
         public void OnGet()
         {
@@ -34,16 +34,16 @@ namespace UserStories.Pages.Account
             {
                 return Page();
             }
-            bool isEmailInUse = programmerRepository.IsEmailInUse(Programmer.Email);
+            bool isEmailInUse = programmerService.IsEmailInUse(Programmer.Email);
             if (isEmailInUse) // Checks if the email is not in use.
             {
                 TempData["Message"] = "Email is already in use!";
                 return Page();
             }
-            programmerRepository.AddProgrammer(Programmer);
+            programmerService.AddProgrammer(Programmer);
             if (true)
             {
-                programmerRepository.ValidateLogin(Programmer.Email, Programmer.Password);
+                programmerService.ValidateLogin(Programmer.Email, Programmer.Password);
             }
             return RedirectToPage("../Index");
         }

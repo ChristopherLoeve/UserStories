@@ -11,15 +11,15 @@ namespace UserStories.Pages
 {
     public class DeleteUserStoryModel : PageModel
     {
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
         public string LayoutPage { get; set; }
 
-        public DeleteUserStoryModel(UserStoryService userStoryService, ProgrammerRepository programmerRepository)
+        public DeleteUserStoryModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
-            ProgrammerRepository = programmerRepository;
+            ProgrammerService = programmerService;
             this.userStoryService = userStoryService;
         }
 
@@ -27,7 +27,7 @@ namespace UserStories.Pages
         {
             UserStories = userStoryService.GetUserStories();
             UserStory = userStoryService.GetUserStory(id);
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

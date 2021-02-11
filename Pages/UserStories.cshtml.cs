@@ -11,7 +11,7 @@ namespace UserStories.Pages
 {
     public class UserStoriesModel : PageModel
     {
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public ProgrammerService ProgrammerService { get; private set; }
         public UserStoryService userStoryService;
         public List<UserStory> UserStories { get; private set; }
         public string LayoutPage { get; set; }
@@ -22,9 +22,9 @@ namespace UserStories.Pages
 
 
 
-        public UserStoriesModel(UserStoryService userStoryService, ProgrammerRepository programmerRepository)
+        public UserStoriesModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
-            ProgrammerRepository = programmerRepository;
+            ProgrammerService = programmerService;
             this.userStoryService = userStoryService;
         }
 
@@ -32,7 +32,7 @@ namespace UserStories.Pages
         public void OnGet()
         {
             UserStories = userStoryService.GetUserStories();
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveLeft(int id)

@@ -11,19 +11,19 @@ namespace UserStories.Pages.Account
 {
     public class LogoutModel : PageModel
     {
-        private readonly ProgrammerRepository programmerRepository;
+        private readonly ProgrammerService programmerService;
         public string Message { get; set; }
 
-        public LogoutModel(ProgrammerRepository programmerRepository)
+        public LogoutModel(ProgrammerService programmerService)
         {
-            this.programmerRepository = programmerRepository;
+            this.programmerService = programmerService;
         }
         public void OnGet()
         {
-            Programmer programmer = programmerRepository.GetLoggedInProgrammer();
+            Programmer programmer = programmerService.GetLoggedInProgrammer();
             Message = $"{programmer.Email} has logged out!";
             programmer.LoggedIn = false;
-            programmerRepository.Commit();
+            programmerService.Commit();
         }
     }
 }

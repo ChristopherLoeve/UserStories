@@ -11,11 +11,14 @@ namespace UserStories.Pages
 {
     public class DeleteFixModel : PageModel
     {
+        public ProgrammerService ProgrammerService { get; private set; }
         private FixesService fixesService;
         public List<Fix> fixes { get; private set; }
+        public string LayoutPage { get; set; }
 
-        public DeleteFixModel(FixesService fixesService)
+        public DeleteFixModel(FixesService fixesService, ProgrammerService programmerService)
         {
+            ProgrammerService = programmerService;
             this.fixesService = fixesService;
         }
 
@@ -23,6 +26,7 @@ namespace UserStories.Pages
         {
             fixesService.GetFix(id);
             fixesService.DeleteFix(fixesService.GetFix(id));
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
             return RedirectToPage("Fixes");
         }
 

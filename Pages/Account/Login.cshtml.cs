@@ -8,7 +8,7 @@ namespace UserStories.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly ProgrammerRepository programmerRepository;
+        private readonly ProgrammerService programmerService;
         public new Programmer Programmer { get; set; }
         [Required, EmailAddress, BindProperty]
         public string Email { get; set; }
@@ -17,9 +17,9 @@ namespace UserStories.Pages.Account
         [TempData]
         public string Message { get; set; }
 
-        public LoginModel(ProgrammerRepository programmerRepository)
+        public LoginModel(ProgrammerService programmerService)
         {
-            this.programmerRepository = programmerRepository;
+            this.programmerService = programmerService;
         }
 
         public IActionResult OnGet()
@@ -29,7 +29,7 @@ namespace UserStories.Pages.Account
 
         public IActionResult OnPost()
         {
-            bool doesProgrammerExist = programmerRepository.ValidateLogin(Email, Password);
+            bool doesProgrammerExist = programmerService.ValidateLogin(Email, Password);
             if (doesProgrammerExist)
             {
                 TempData["LoginSuccess"] = "Login Successful!";

@@ -11,20 +11,20 @@ namespace UserStories.Pages
 {
     public class BacklogModel : PageModel
     {
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public ProgrammerService ProgrammerService { get; private set; }
         private UserStoryService userStoryService;
         public List<UserStory> UserStories { get; private set; }
         public string LayoutPage { get; set; }
 
-        public BacklogModel(UserStoryService userStoryService, ProgrammerRepository programmerRepository)
+        public BacklogModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
-            ProgrammerRepository = programmerRepository;
+            ProgrammerService = programmerService;
             this.userStoryService = userStoryService;
         }
         public void OnGet()
         {
             UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveRight(int id)

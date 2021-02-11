@@ -17,12 +17,12 @@ namespace UserStories.Pages
         private UserStoryService userStoryService;
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public ProgrammerService ProgrammerService { get; private set; }
         public string LayoutPage { get; set; }
 
-        public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerRepository programmerRepository)
+        public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
-            ProgrammerRepository = programmerRepository;
+            ProgrammerService = programmerService;
             this.userStoryService = userStoryService;
             this.htmlHelper = htmlHelper;
         }
@@ -32,7 +32,7 @@ namespace UserStories.Pages
             UserStories = userStoryService.GetUserStories();
             UserStory = userStoryService.GetUserStory(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()
