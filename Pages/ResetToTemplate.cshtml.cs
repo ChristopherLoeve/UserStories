@@ -10,19 +10,19 @@ namespace UserStories.Pages
 {
     public class ResetToTemplateModel : PageModel
     {
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public ProgrammerService ProgrammerService { get; private set; }
         private UserStoryService userStoryService;
         public string LayoutPage { get; set; }
-        public ResetToTemplateModel(UserStoryService userStoryService, ProgrammerRepository programmerRepository)
+        public ResetToTemplateModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
-            ProgrammerRepository = programmerRepository;
+            ProgrammerService = programmerService;
             this.userStoryService = userStoryService;
         }
 
         public IActionResult OnGet()
         {
             userStoryService.ResetToTemplate();
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
             return RedirectToPage("UserStories");
         }
     }

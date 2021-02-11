@@ -34,6 +34,11 @@ namespace UserStories.Services
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "UserStoriesTemplate.json"); }
         }
 
+        private string JsonProgrammerName
+        {
+            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "Programmers.json"); }
+        }
+
 
 
         public IEnumerable<UserStory> GetJsonUserStories()
@@ -107,6 +112,29 @@ namespace UserStories.Services
                     Indented = true
                 });
                 JsonSerializer.Serialize<UserStory[]>(jsonWriter, userStories.ToArray());
+            }
+        }
+
+        public void Save(List<Programmer> programmers)
+        {
+
+            using (var jsonFileWriter = File.Create(JsonProgrammerName))
+            {
+                var jsonWriter = new Utf8JsonWriter(jsonFileWriter, new JsonWriterOptions()
+                {
+                    SkipValidation = false,
+                    Indented = true
+                });
+                JsonSerializer.Serialize<Programmer[]>(jsonWriter, programmers.ToArray());
+            }
+
+        }
+
+        public IEnumerable<Programmer> GetProgrammers()
+        {
+            using (var jsonFileReader = File.OpenText(JsonProgrammerName))
+            {
+                return JsonSerializer.Deserialize<Programmer[]>(jsonFileReader.ReadToEnd());
             }
         }
     }

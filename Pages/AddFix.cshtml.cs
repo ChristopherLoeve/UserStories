@@ -11,18 +11,22 @@ namespace UserStories.Pages
 {
     public class AddFixModel : PageModel
     {
-        private FixesService fixesService; 
-        
+        public ProgrammerService ProgrammerService { get; private set; }
+        private FixesService fixesService;
+        public string LayoutPage { get; set; }
+
         [BindProperty] public Fix fix { get; set; }
 
-        public AddFixModel(FixesService fixesService)
+        public AddFixModel(FixesService fixesService, ProgrammerService programmerService)
         {
+            ProgrammerService = programmerService;
             this.fixesService = fixesService;
         }
 
         public void OnGet()
         {
             fix = new Fix();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

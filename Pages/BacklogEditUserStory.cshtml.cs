@@ -12,7 +12,7 @@ namespace UserStories.Pages
 {
     public class BacklogEditUserStoryModel : PageModel
     {
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
@@ -20,9 +20,9 @@ namespace UserStories.Pages
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
         public string LayoutPage { get; set; }
 
-        public BacklogEditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerRepository programmerRepository)
+        public BacklogEditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
-            ProgrammerRepository = programmerRepository;
+            ProgrammerService = programmerService;
             this.userStoryService = userStoryService;
             this.htmlHelper = htmlHelper;
         }
@@ -32,7 +32,7 @@ namespace UserStories.Pages
             UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
             UserStory = userStoryService.GetUserStory(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
-            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
+            LayoutPage = ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()
