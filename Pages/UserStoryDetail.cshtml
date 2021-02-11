@@ -2,6 +2,7 @@
 @using UserStories.Models
 @model UserStories.Pages.UserStoryDetailModel
 @{
+    Layout = Model.LayoutPage;
     ViewData["Title"] = "Viewing " + @Model.UserStory.Title;
     <h1 class="text-center">User Stories</h1>
 

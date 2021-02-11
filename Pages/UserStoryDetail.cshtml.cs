@@ -14,16 +14,20 @@ namespace UserStories.Pages
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
+        public ProgrammerRepository ProgrammerRepository { get; private set; }
+        public string LayoutPage { get; set; }
 
-        public UserStoryDetailModel(UserStoryService userStoryService)
+        public UserStoryDetailModel(UserStoryService userStoryService, ProgrammerRepository programmerRepository)
         {
             this.userStoryService = userStoryService;
+            ProgrammerRepository = programmerRepository;
         }
 
         public void OnGet(int id)
         {
             UserStories = userStoryService.GetUserStories();
             UserStory = userStoryService.GetUserStory(id);
+            LayoutPage = ProgrammerRepository.GetProgrammerLayout();
         }
     }
 }

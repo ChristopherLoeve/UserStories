@@ -12,12 +12,12 @@ namespace UserStories.Pages
 {
     public class EditUserStoryModel : PageModel
     {
-        public ProgrammerRepository ProgrammerRepository { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
+        public ProgrammerRepository ProgrammerRepository { get; private set; }
         public string LayoutPage { get; set; }
 
         public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerRepository programmerRepository)
