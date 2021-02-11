@@ -13,25 +13,22 @@ namespace UserStories.Pages
     public class EditFixModel : PageModel
     {
 
-        [BindProperty] public Fix fix { get; set; }
-        public List<Fix> fixes { get; private set; }
+        [BindProperty] public Fix Fix { get; set; }
         private FixesService fixesService;
-        private readonly IHtmlHelper htmlHelper;
 
-        public EditFixModel(FixesService fixesService, IHtmlHelper htmlHelper)
+        public EditFixModel(FixesService fixesService)
         {
             this.fixesService = fixesService;
-            this.htmlHelper = htmlHelper;
         }
         public void OnGet(int id)
         {
-            fix = fixesService.GetFix(id);
+            Fix = fixesService.GetFix(id);
             fixesService.GetFixes();
         }
 
         public IActionResult OnPost(int id)
         {
-            fixesService.UpdateFix(fix, id);
+            fixesService.UpdateFix(Fix, id);
             return RedirectToPage("Fixes");
         }
     }
