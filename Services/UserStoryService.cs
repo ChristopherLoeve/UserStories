@@ -12,7 +12,7 @@ namespace UserStories.Services
         private JsonFileService jsonFileService { get; set; }
 
 
-        public UserStoryService(JsonFileService jsonFileUserStoryService)
+        public UserStoryService(JsonFileService jsonFileService)
         {
             this.jsonFileService = jsonFileService;
             userStories = this.jsonFileService.GetJsonUserStories().ToList();

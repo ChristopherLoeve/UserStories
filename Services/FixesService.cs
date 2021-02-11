@@ -12,9 +12,9 @@ namespace UserStories.Services
         private List<Fix> fixes;
         private JsonFileService jsonFileService { get; set; }
 
-        public FixesService(JsonFileService jsonFileUserStoryService)
+        public FixesService(JsonFileService jsonFileService)
         {
-            jsonFileService = jsonFileUserStoryService;
+            this.jsonFileService = jsonFileService;
             fixes = this.jsonFileService.GetJsonFixes().ToList();
         }
 
