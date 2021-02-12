@@ -117,7 +117,7 @@
     "CreationDate": "2021-02-10T10:27:41.5174718+01:00",
     "Priority": 3,
     "StoryPoints": 2,
-    "Column": 2
+    "Column": 3
   },
   {
     "Id": 14,
@@ -141,52 +141,52 @@
   },
   {
     "Id": 16,
-    "Title": "Backlog story 1",
-    "Description": "As a user \r\nI want to have a page for my user stories in the back log\r\nSo that I can keep track of them and decide which ones to move to a sprint\r\n\r\nAcceptance criteria \r\nGiven that I get taken to a different page \r\nWhen I click the backlog tab\r\nThen I can find all my backlogged user stories\r\n\r\n",
-    "BusinessValue": 1,
-    "CreationDate": "2021-02-10T10:29:52.7283475+01:00",
-    "Priority": 1,
-    "StoryPoints": 0,
+    "Title": "Assign",
+    "Description": "As a user\r\nI want to be able to assign a user to a user story\r\nSo that I can manage who does what\r\n\r\nAcceptance criteria:\r\nGiven that I can add a user to a specific user story\r\nWhen I click the assign button on a user story an choose a person\r\nThen I can see who is assigned to the user story",
+    "BusinessValue": 6,
+    "CreationDate": "2021-02-12T09:11:33.0790206+01:00",
+    "Priority": 5,
+    "StoryPoints": 1,
     "Column": 0
   },
   {
     "Id": 17,
-    "Title": "Backlog story 2",
-    "Description": "As a user \r\nI want to have a page for my user stories in the back log\r\nSo that I can keep track of them and decide which ones to move to a sprint\r\n\r\nAcceptance criteria \r\nGiven that I get taken to a different page \r\nWhen I click the backlog tab\r\nThen I can find all my backlogged user stories\r\n\r\n",
-    "BusinessValue": 1,
-    "CreationDate": "2021-02-10T10:29:54.8174971+01:00",
-    "Priority": 1,
-    "StoryPoints": 0,
+    "Title": "Change color",
+    "Description": "As a user\r\nI want to be able to change color to a user to a user story\r\nSo that I easily distinguish it\r\n\r\nAcceptance criteria:\r\nGiven that I can edit the color\r\nWhen I change it in the edit page\r\nThen I can see the color on the user stories page",
+    "BusinessValue": 6,
+    "CreationDate": "2021-02-12T09:11:47.1371007+01:00",
+    "Priority": 5,
+    "StoryPoints": 1,
     "Column": 0
   },
   {
     "Id": 18,
-    "Title": "Backlog story 3",
-    "Description": "As a user \r\nI want to have a page for my user stories in the back log\r\nSo that I can keep track of them and decide which ones to move to a sprint\r\n\r\nAcceptance criteria \r\nGiven that I get taken to a different page \r\nWhen I click the backlog tab\r\nThen I can find all my backlogged user stories\r\n\r\n",
-    "BusinessValue": 1,
-    "CreationDate": "2021-02-10T10:29:57.0892961+01:00",
-    "Priority": 1,
-    "StoryPoints": 0,
+    "Title": "Due date",
+    "Description": "As a user\r\nI want to be able to give my user story a due date \r\nSo that I can schedule my user stories \r\n\r\nAcceptance criteria \r\nGiven that I can set a due date for my user stories \r\nWhen I give them a due date on creation or edit \r\nThen the user story should be set to be due on a specific date ",
+    "BusinessValue": 6,
+    "CreationDate": "2021-02-12T09:12:19.5500673+01:00",
+    "Priority": 6,
+    "StoryPoints": 2,
     "Column": 0
   },
   {
     "Id": 19,
-    "Title": "Backlog story 4",
-    "Description": "As a user \r\nI want to have a page for my user stories in the back log\r\nSo that I can keep track of them and decide which ones to move to a sprint\r\n\r\nAcceptance criteria \r\nGiven that I get taken to a different page \r\nWhen I click the backlog tab\r\nThen I can find all my backlogged user stories\r\n\r\n",
-    "BusinessValue": 1,
-    "CreationDate": "2021-02-10T10:29:59.2910632+01:00",
-    "Priority": 1,
-    "StoryPoints": 0,
+    "Title": "Automatic Sprint Handling",
+    "Description": "As a user\r\nI want to be able to let the system handle sprint assignment\r\nSo I don\u0027t forget user stories that are due this week.\r\n\r\nAcceptance Criteria:\r\nGiven that I am able to set a project start date and end date\r\nWhen user stories that are due to the current sprint week, automatically get assigned to the current sprint\r\nUser stories that are Done Done get moved to an \u0022old sprints\u0022 page\r\nThen I can manage my sprints better",
+    "BusinessValue": 7,
+    "CreationDate": "2021-02-12T09:14:42.0685688+01:00",
+    "Priority": 6,
+    "StoryPoints": 2,
     "Column": 0
   },
   {
     "Id": 20,
-    "Title": "Backlog story 5",
-    "Description": "As a user \r\nI want to have a page for my user stories in the back log\r\nSo that I can keep track of them and decide which ones to move to a sprint\r\n\r\nAcceptance criteria \r\nGiven that I get taken to a different page \r\nWhen I click the backlog tab\r\nThen I can find all my backlogged user stories\r\n\r\n",
-    "BusinessValue": 1,
-    "CreationDate": "2021-02-10T10:30:01.6020132+01:00",
-    "Priority": 1,
-    "StoryPoints": 0,
-    "Column": 0
+    "Title": "Multiple projects",
+    "Description": "As a user\r\nI want to be able to create multiple projects.\r\nSo that I have the ability to reuse the website for multiple sprints\r\n\r\nAcceptance Criteria:\r\nI can create a new project\r\nI can delete an unused project\r\nI can edit details of projects\r\nI can set a project as active",
+    "BusinessValue": 4,
+    "CreationDate": "2021-02-12T09:16:18.611919+01:00",
+    "Priority": 5,
+    "StoryPoints": 2,
+    "Column": 2
   }
 ]
