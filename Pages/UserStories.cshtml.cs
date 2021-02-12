@@ -46,6 +46,27 @@ namespace UserStories.Pages
             userStoryService.MoveStoryRight(id);
             OnGet();
         }
+
+        public IActionResult OnGetUpdateObject(int id, string column)
+        {
+            UserStories = userStoryService.GetUserStories();
+            string columnName = string.Empty;
+            foreach (char character in column)
+            {
+                if (char.IsLetter(character))
+                {
+                    columnName += character;
+                } else
+                {
+                    if (character == '_')
+                    {
+                        columnName += character;
+                    }
+                }
+            }
+            userStoryService.UpdateColumn(id, columnName);
+            return Page();
+        }
         
     }
 }
