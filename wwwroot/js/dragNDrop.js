@@ -43,14 +43,38 @@ function dragLeave() {
 }
 
 function dragDrop(event) {
+
+    
     this.className = '.card.mb-2.dragAbleElement.empty';
+    columnName = JSON.stringify(this.id);
+    console.log(columnName);
     const id = event
         .dataTransfer
         .getData('text');
 
+    //id: card.id, 
     for (const card of cards) {
         if (card.id === id) {
             this.append(card);
+            $.ajax({
+                url: "/UserStories?handler=UpdateObject", /*'@Url.Action("UpdateObject", "UserStories")'*/
+                type: 'GET',
+                dataType: 'json',
+                data: { id: card.id, column: columnName },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    var strResponse = "";
+                    $.each(data, function (index, value) {
+                        $.each(this, function (index, value) {
+                            strResponse += index + " :: " + value + "<br/>";
+                        });
+                    });
+                    $("#response").html(strResponse);
+                },
+                error: function (xhr, status, error) {
+                    console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
         }
     }
 }

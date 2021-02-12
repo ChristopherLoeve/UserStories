@@ -74,6 +74,14 @@ namespace UserStories.Services
             jsonFileService.SaveJsonUserStories(userStories);
         }
 
+        internal void UpdateColumn(int id, string column)
+        {
+
+            UserStory userStory = GetUserStory(id);
+            Column columnToEnum = (Column)Enum.Parse(typeof(Column), column, true);
+            userStory.Column = columnToEnum;
+        }
+
         public List<UserStory> GetUserStoriesByColumn(Column column)
         {
             List<UserStory> list = new List<UserStory>();
