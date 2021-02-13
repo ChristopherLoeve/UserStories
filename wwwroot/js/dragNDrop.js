@@ -45,19 +45,17 @@ function dragLeave() {
 function dragDrop(event) {
 
     
-    this.className = '.card.mb-2.dragAbleElement.empty';
-    columnName = JSON.stringify(this.id);
-    console.log(columnName);
-    const id = event
+    columnName = JSON.stringify(this.id); // This turns the id from the html object into a json string.
+    const id = event // Get the id of whatever object we're trying to drag to.
         .dataTransfer
         .getData('text');
 
     //id: card.id, 
-    for (const card of cards) {
+    for (const card of cards) { // Loop over all cards, this is too ensure we cant place cards within eachother.
         if (card.id === id) {
-            this.append(card);
+            this.append(card); // This appends the card by the end.
             $.ajax({
-                url: "/UserStories?handler=UpdateObject", /*'@Url.Action("UpdateObject", "UserStories")'*/
+                url: "/UserStories?handler=UpdateObject", // This is an ajax request to the OnGetUpdateObject function in userstories, ensures that the object's colunm property is updated correctly.
                 type: 'GET',
                 dataType: 'json',
                 data: { id: card.id, column: columnName },
