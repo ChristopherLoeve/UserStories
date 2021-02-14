@@ -1,0 +1,37 @@
+﻿@page
+@model Fixes.EditFixModel
+@{
+    Layout = Model.LayoutPage;
+}
+<h1>Edit a Fix</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="@Model.Fix.Title" class="control-label"></label>
+                <div class="form-group">
+                    <input asp-for="@Model.Fix.Title" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Fix.Description" class="control-label"></label>
+                <input asp-for="@Model.Fix.Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Fix.Fixed" class="control-label"></label>
+                <select class="form control" asp-for="Fix.Fixed">
+                    <option value="true">Fixed</option>
+                    <option value="false">Not fixed</option>
+                </select>
+            </div>
+
+            <hr />
+            <b>@ViewData["Message"]</b>
+            <div class="form-group">
+                <input id="Edit fix" type="submit" value="Edit fix" class="btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

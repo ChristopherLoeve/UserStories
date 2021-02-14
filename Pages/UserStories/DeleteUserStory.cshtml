@@ -1,0 +1,203 @@
+﻿@page
+@using global::UserStories.Models
+@model UserStories.DeleteUserStoryModel
+@{
+    Layout = Model.LayoutPage;
+    ViewData["Title"] = "Delete " + @Model.UserStory.Title;
+    <h1 class="text-center">User Stories</h1>
+
+    <div class="card-group">
+
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center" style="height: 4rem">
+                <h5 class="card-title">
+                    To Do
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;To Do&quot;" asp-page="CreateUserStory" asp-route-id="1">
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.To_Do)
+                {
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
+                        <div class="card-header p-1" style="height:2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Backlog" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="empty"></div>
+        </div>
+
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center" style="height: 4rem">
+                <h5 class="card-title">
+                    Doing
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;Doing&quot;" asp-page="CreateUserStory" asp-route-id="2">
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.Doing)
+                {
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
+                        <div class="card-header p-1" style="height: 2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;To Do&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="empty"></div>
+        </div>
+
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center" style="height: 4rem">
+                <h5 class="card-title">
+                    Done
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;Done&quot;" asp-page="CreateUserStory" asp-route-id="3">
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.Done)
+                {
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
+                        <div class="card-header p-1" style="height: 2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done Done&quot;" asp-page-handler="MoveRight" asp-route-id="@userStory.Id"><i class="fa fa-arrow-right" style="color: grey"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="empty"></div>
+        </div>
+
+        <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
+
+            <div class="card-header p-2 text-center" style="height: 4rem">
+                <h5 class="card-title">
+                    Done Done
+                    <span class="float-right p-lg-1">
+                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new user story in &quot;Done Done&quot;" asp-page="CreateUserStory" asp-route-id="4">
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </h5>
+            </div>
+
+            <div class="p-1"></div>
+
+            @foreach (var userStory in @Model.UserStories)
+            {
+                @if (userStory.Column == Column.Done_Done)
+                {
+                    <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
+                        <div class="card-header p-1" style="height: 2rem">
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                        </div>
+                        <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
+                        </div>
+                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="DeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                            <a class="btn"><i class="fa fa-arrow-right" style="visibility: hidden"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="empty"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure you want to delete @Model.UserStory.Title</h5>
+                </div>
+
+                <div class="modal-body">
+                    <p><b>Description:</b></p>
+                    <p style="white-space: pre-line">@Model.UserStory.Description</p>
+                    <p><b>Priority:</b> @Model.UserStory.Priority</p>
+                    <p><b>Business value:</b> @Model.UserStory.BusinessValue</p>
+                    <p><b>Story points:</b> @Model.UserStory.StoryPoints</p>
+                    <p><b>Status:</b> @Model.UserStory.Column.ToString().Replace('_', ' ')</p>
+                    <p><b>Creation date:</b> @Model.UserStory.CreationDate</p>
+                </div>
+
+                <div class="modal-footer align-content-center">
+                    <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="UserStories">No</a>
+                    <form method="post">
+                        <input id="Delete User Story" type="submit" value="Yes" class="btn btn-success" style="width: 15rem" />
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts
+{
+    <script src="~/js/showModal.js"></script>
+}

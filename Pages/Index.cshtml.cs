@@ -19,7 +19,7 @@ namespace UserStories.Pages
 
         public IActionResult OnGet()
         {
-            return RedirectToPage("UserStories");
+            return RedirectToPage("UserStories/UserStories");
         }
     }
 }
