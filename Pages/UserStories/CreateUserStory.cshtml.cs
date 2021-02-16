@@ -43,6 +43,7 @@ namespace UserStories.Pages.UserStories
             {
                 UserStories = userStoryService.GetUserStories();
                 StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
+                LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
                 return Page();
             }
 

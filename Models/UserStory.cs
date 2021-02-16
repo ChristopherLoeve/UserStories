@@ -23,11 +23,11 @@ namespace UserStories.Models
     }
     
 
-    public class UserStory
+    public class UserStory : Card
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Field is required")] public string Title { get; set; }
-        [Required(ErrorMessage = "Field is required")] public string Description { get; set; }
+        //[Required(ErrorMessage = "Field is required")] public string Title { get; set; }
+        //[Required(ErrorMessage = "Field is required")] public string Description { get; set; }
         public int BusinessValue { get; set; }
         public DateTime CreationDate { get; set; }
         public int Priority { get; set; }
@@ -39,7 +39,7 @@ namespace UserStories.Models
             CreationDate = DateTime.Now;
         }
 
-        public UserStory(string title, string description, int businessValue, int priority, StoryPoint storyPoints, int id, Column column)
+        public UserStory(string title, string description, int businessValue, int priority, StoryPoint storyPoints, int id, Column column) : base(title, description, DateTime.Now)
         {
             Id = id;
             Title = title;

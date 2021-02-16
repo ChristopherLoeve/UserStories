@@ -1,14 +1,16 @@
 [
   {
     "Id": 5,
-    "Title": "Fix",
-    "Description": null,
-    "Fixed": false
+    "Fixed": false,
+    "Title": "Priority fix",
+    "Description": "all userstories are given prio 5 for some reason",
+    "CreationDate": "2021-02-16T11:36:29.4542659+01:00"
   },
   {
     "Id": 3,
-    "Title": "Fixes Page",
-    "Description": "Fixes page needs to look better",
-    "Fixed": false
+    "Fixed": false,
+    "Title": null,
+    "Description": null,
+    "CreationDate": "2021-02-16T11:40:16.1610807+01:00"
   }
 ]
