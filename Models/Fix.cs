@@ -22,6 +22,7 @@ namespace UserStories.Models
         }
         public Fix()
         {
+            //auto
             StatId++;
             Id = StatId;
             Fixed = false;
