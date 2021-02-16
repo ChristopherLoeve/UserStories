@@ -36,6 +36,11 @@ namespace UserStories
                 .AddRazorPagesOptions(options =>
                     {
                         options.Conventions.AuthorizeFolder("/Backlog");
+                        options.Conventions.AuthorizeFolder("/Account");
+                        options.Conventions.AuthorizeFolder("/UserStories");
+                        options.Conventions.AuthorizeFolder("/Fixes");
+                        options.Conventions.AllowAnonymousToPage("/Account/Login");
+                        options.Conventions.AllowAnonymousToPage("/Account/Register");
                     }
                 );
 
@@ -54,12 +59,11 @@ namespace UserStories
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

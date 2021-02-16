@@ -29,11 +29,20 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/UserStories/ResetToTemplate">Reset to Template</a>
                         </li>
                         @*<li class="nav item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/UserStories/SaveAsTemplate">Save as Template</a>
-                        </li>*@ 
-                        <li class="nav-item navbar-nav ml-auto">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Account/Login">Login</a>
-                        </li>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/UserStories/SaveAsTemplate">Save as Template</a>
+                            </li>*@
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item navbar-nav ml-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout" asp-route-ReturnUrl="/UserStories/UserStories">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item navbar-nav ml-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Account/Login" asp-route-ReturnUrl="/UserStories/UserStories">Login</a>
+                            </li>
+                        }
 
                     </ul>
                 </div>

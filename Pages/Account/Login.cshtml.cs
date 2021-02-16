@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using UserStories.Models;
 using UserStories.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace UserStories.Pages.Account
 {
@@ -27,17 +28,14 @@ namespace UserStories.Pages.Account
             this.programmerService = programmerService;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
         public IActionResult OnPost()
         {
             bool doesProgrammerExist = programmerService.ValidateLogin(Email, Password);
-            if (doesProgrammerExist)
+            if (!doesProgrammerExist)
             {
-                TempData["LoginSuccess"] = "Login Successful!";
+                return Page();
+            }
+            TempData["LoginSuccess"] = "Login Successful!";
 
                 var scheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
@@ -50,9 +48,7 @@ namespace UserStories.Pages.Account
                     )
                 );
                 return SignIn(user, scheme);
-            }
-            TempData["Message"] = "Invalid email or password";
-            return RedirectToPage("./Login");
+            
         }
     }
 }
