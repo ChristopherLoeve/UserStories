@@ -15,7 +15,6 @@ namespace UserStories.Pages.UserStories
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
         public ProgrammerService ProgrammerService { get; private set; }
-        public string LayoutPage { get; set; }
 
         public UserStoryDetailModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
@@ -27,7 +26,6 @@ namespace UserStories.Pages.UserStories
         {
             UserStories = userStoryService.GetUserStories();
             UserStory = userStoryService.GetUserStory(id);
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
     }
 }

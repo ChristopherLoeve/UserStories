@@ -18,7 +18,6 @@ namespace UserStories.Pages.Backlog
         private UserStoryService userStoryService;
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
-        public string LayoutPage { get; set; }
 
         public BacklogEditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
@@ -32,7 +31,6 @@ namespace UserStories.Pages.Backlog
             UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
             UserStory = userStoryService.GetUserStory(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

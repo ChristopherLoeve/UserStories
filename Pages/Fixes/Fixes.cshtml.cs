@@ -13,7 +13,6 @@ namespace UserStories.Pages.Fixes
         public ProgrammerService ProgrammerService { get; private set; }
         private FixesService fixesService;
         public List<Fix> Fixes { get; private set; }
-        public string LayoutPage { get; set; }
 
         public FixesModel(FixesService fixesService, ProgrammerService programmerService)
         {
@@ -24,7 +23,6 @@ namespace UserStories.Pages.Fixes
         public void OnGet()
         {
             Fixes = fixesService.GetFixes();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
     }
 }

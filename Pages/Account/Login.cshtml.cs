@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using UserStories.Models;
 using UserStories.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using System.Threading.Tasks;
 
 namespace UserStories.Pages.Account
 {
@@ -49,6 +51,13 @@ namespace UserStories.Pages.Account
                 );
                 return SignIn(user, scheme);
             
+        }
+
+        public async Task<IActionResult> OnPostLogoutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToPage("/UserStories/UserStories");
         }
     }
 }

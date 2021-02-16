@@ -27,7 +27,6 @@ namespace UserStories.Pages.Backlog
         {
             UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
             UserStory = userStoryService.GetUserStory(id);
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
     }
 }

@@ -35,14 +35,6 @@ namespace UserStories.Services
             programmers.Add(programmer);
             JsonFileService.Save(programmers);
         }
-        /// <summary>
-        /// Gets current logged in user.
-        /// </summary>
-        /// <returns>User</returns>
-        public Programmer GetLoggedInProgrammer()
-        {
-            return Programmer;
-        }
 
         /// <summary>
         /// Validates if user entered correct password and username.
@@ -59,7 +51,6 @@ namespace UserStories.Services
                     return true;
                 }
             }
-
             return false;
 
         }
@@ -71,25 +62,6 @@ namespace UserStories.Services
         public bool IsEmailInUse(string email)
         {
             return programmers.Any(u => u.Email == email); // Checks all users in list "users" if incoming email matches one of them.
-        }
-
-        /// <summary>
-        /// Gets the users layout, based on wether they're logged in or not.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public string GetProgrammerLayout()
-        {
-            string LayoutPage = "./Shared/_Layout.cshtml";
-
-            if (Programmer != null)
-            {
-                if (Programmer.LoggedIn)
-                {
-                    LayoutPage = "./Shared/_otherLayout.cshtml";
-                }
-            }
-            return LayoutPage;
         }
 
         public void Commit()

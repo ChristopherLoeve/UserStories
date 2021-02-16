@@ -34,7 +34,6 @@ namespace UserStories.Pages.Backlog
             UserStory = new UserStory();
             UserStory.Description = "As \nI want to \nSo \n\nAcceptance Criteria:\nGiven that \nWhen I \nThen I ";
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost(int id)

@@ -14,7 +14,6 @@ namespace UserStories.Pages.UserStories
         public ProgrammerService ProgrammerService { get; private set; }
         public UserStoryService userStoryService;
         public List<UserStory> UserStories { get; private set; }
-        public string LayoutPage { get; set; }
         public List<UserStory> ToDoStories { get; private set; }
         public List<UserStory> DoingStories { get; private set; }
         public List<UserStory> DoneStories { get; private set; }
@@ -32,7 +31,6 @@ namespace UserStories.Pages.UserStories
         public void OnGet()
         {
             UserStories = userStoryService.GetUserStories();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveLeft(int id)

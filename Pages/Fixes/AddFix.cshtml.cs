@@ -13,7 +13,6 @@ namespace UserStories.Pages.Fixes
     {
         public ProgrammerService ProgrammerService { get; private set; }
         private FixesService fixesService;
-        public string LayoutPage { get; set; }
 
         [BindProperty] public Fix fix { get; set; }
 
@@ -26,7 +25,6 @@ namespace UserStories.Pages.Fixes
         public void OnGet()
         {
             fix = new Fix();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

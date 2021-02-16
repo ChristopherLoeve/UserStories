@@ -16,7 +16,6 @@ namespace UserStories.Pages.Backlog
         public ProgrammerService ProgrammerService { get; private set; }
         private UserStoryService userStoryService;
         public List<UserStory> UserStories { get; private set; }
-        //public string LayoutPage { get; set; }
 
         public BacklogModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
@@ -26,7 +25,6 @@ namespace UserStories.Pages.Backlog
         public void OnGet()
         {
             UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
-            //LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveRight(int id)

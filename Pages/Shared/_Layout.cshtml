@@ -33,9 +33,13 @@
                             </li>*@
                         @if (Context.User.Identity.IsAuthenticated)
                         {
+
                             <li class="nav-item navbar-nav ml-auto">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Account/Logout" asp-route-ReturnUrl="/UserStories/UserStories">Logout</a>
+                                <form method="post" asp-page="/Account/Login" asp-page-handler="Logout">
+                                    <button type="submit" class="nav-link text-dark" style="border:none;" >Logout</button>
+                                </form>
                             </li>
+
                         }
                         else
                         {
