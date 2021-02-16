@@ -8,6 +8,7 @@ namespace UserStories.Models
 {
     public abstract class Card
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Field is required")] public string Title { get; set; }
         [Required(ErrorMessage = "Field is required")] public string Description { get; set; }
         public DateTime CreationDate { get; set; }
@@ -17,8 +18,9 @@ namespace UserStories.Models
             
         }
 
-        protected Card(string title, string description, DateTime creationDate)
+        protected Card(int id, string title, string description)
         {
+            Id = id;
             Title = title;
             Description = description;
             CreationDate = DateTime.Now;

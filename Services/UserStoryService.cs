@@ -135,25 +135,6 @@ namespace UserStories.Services
             }
             jsonFileService.SaveJsonUserStories(userStories);
         }
-        public void MoveColumnUp(UserStory userStory)
-        {
-            if (userStory.Column == Column.To_Do)
-            {
-                userStory.Column = Column.Doing;
-            }
-            else if (userStory.Column == Column.Doing)
-            {
-                userStory.Column = Column.Done;
-            }
-            else if (userStory.Column == Column.Done)
-            {
-                userStory.Column = Column.Done_Done;
-            }
-            else if (userStory.Column == Column.Done_Done)
-            {
-                userStory.Column = Column.To_Do;
-            }
-        }
 
         public void ResetToTemplate()
         {
