@@ -15,7 +15,6 @@ namespace UserStories.Pages.Backlog
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
         private UserStoryService userStoryService;
-        public string LayoutPage { get; set; }
 
         public BacklogDeleteUserStoryModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
@@ -27,7 +26,6 @@ namespace UserStories.Pages.Backlog
         {
             UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
             UserStory = userStoryService.GetUserStory(id);
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

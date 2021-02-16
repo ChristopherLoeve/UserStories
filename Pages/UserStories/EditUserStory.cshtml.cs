@@ -18,7 +18,6 @@ namespace UserStories.Pages.UserStories
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
         public ProgrammerService ProgrammerService { get; private set; }
-        public string LayoutPage { get; set; }
 
         public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
@@ -32,7 +31,6 @@ namespace UserStories.Pages.UserStories
             UserStories = userStoryService.GetUserStories();
             UserStory = userStoryService.GetUserStory(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost()

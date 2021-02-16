@@ -16,7 +16,6 @@ namespace UserStories.Pages.Fixes
 
         [BindProperty] public Fix Fix { get; set; }
         private FixesService fixesService;
-        public string LayoutPage { get; set; }
 
         public EditFixModel(FixesService fixesService, ProgrammerService programmerService)
         {
@@ -27,7 +26,6 @@ namespace UserStories.Pages.Fixes
         {
             Fix = fixesService.GetFix(id);
             fixesService.GetFixes();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost(int id)

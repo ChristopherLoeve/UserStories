@@ -12,7 +12,6 @@ namespace UserStories.Pages.UserStories
     {
         public ProgrammerService ProgrammerService { get; private set; }
         private UserStoryService userStoryService;
-        public string LayoutPage { get; set; }
         public SaveAsTemplateModel(UserStoryService userStoryService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
@@ -22,7 +21,6 @@ namespace UserStories.Pages.UserStories
         public IActionResult OnGet()
         {
             userStoryService.SaveAsTemplate();
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
             return RedirectToPage("UserStories");
         }
     }

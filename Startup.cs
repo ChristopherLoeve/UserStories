@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using UserStories.Services;
 
 namespace UserStories
@@ -29,6 +30,20 @@ namespace UserStories
             services.AddSingleton<ProgrammerService, ProgrammerService>();
             services.AddSingleton<JsonFileService, JsonFileService>();
             services.AddSingleton<FixesService, FixesService>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                    {
+                        options.Conventions.AuthorizeFolder("/Backlog");
+                        options.Conventions.AuthorizeFolder("/Account");
+                        options.Conventions.AuthorizeFolder("/UserStories");
+                        options.Conventions.AuthorizeFolder("/Fixes");
+                        options.Conventions.AllowAnonymousToPage("/Account/Login");
+                        options.Conventions.AllowAnonymousToPage("/Account/Register");
+                    }
+                );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,12 +59,11 @@ namespace UserStories
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

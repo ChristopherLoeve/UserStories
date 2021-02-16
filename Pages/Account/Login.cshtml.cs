@@ -1,8 +1,16 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using UserStories.Models;
 using UserStories.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using System.Threading.Tasks;
 
 namespace UserStories.Pages.Account
 {
@@ -22,21 +30,34 @@ namespace UserStories.Pages.Account
             this.programmerService = programmerService;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
         public IActionResult OnPost()
         {
             bool doesProgrammerExist = programmerService.ValidateLogin(Email, Password);
-            if (doesProgrammerExist)
+            if (!doesProgrammerExist)
             {
-                TempData["LoginSuccess"] = "Login Successful!";
-                return RedirectToPage("../Index");
+                return Page();
             }
-            TempData["Message"] = "Invalid email or password";
-            return RedirectToPage("./Login");
+            TempData["LoginSuccess"] = "Login Successful!";
+
+                var scheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+                var user = new ClaimsPrincipal
+                (
+                    new ClaimsIdentity
+                    (
+                            new [] { new Claim(ClaimTypes.Name, Email), },
+                            scheme
+                    )
+                );
+                return SignIn(user, scheme);
+            
+        }
+
+        public async Task<IActionResult> OnPostLogoutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToPage("/UserStories/UserStories");
         }
     }
 }

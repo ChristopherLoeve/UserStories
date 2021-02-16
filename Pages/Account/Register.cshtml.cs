@@ -34,17 +34,16 @@ namespace UserStories.Pages.Account
             {
                 return Page();
             }
+
             bool isEmailInUse = programmerService.IsEmailInUse(Programmer.Email);
             if (isEmailInUse) // Checks if the email is not in use.
             {
                 TempData["Message"] = "Email is already in use!";
                 return Page();
             }
+
             programmerService.AddProgrammer(Programmer);
-            if (true)
-            {
-                programmerService.ValidateLogin(Programmer.Email, Programmer.Password);
-            }
+
             return RedirectToPage("../Index");
         }
     }
