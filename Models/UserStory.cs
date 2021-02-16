@@ -25,6 +25,7 @@ namespace UserStories.Models
 
     public class UserStory
     {
+        //dette er et id
         public int Id { get; set; }
         [Required(ErrorMessage = "Field is required")] public string Title { get; set; }
         [Required(ErrorMessage = "Field is required")] public string Description { get; set; }
