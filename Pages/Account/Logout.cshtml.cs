@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserStories.Models;
@@ -22,6 +23,9 @@ namespace UserStories.Pages.Account
         {
             Programmer programmer = programmerService.GetLoggedInProgrammer();
             Message = $"{programmer.Email} has logged out!";
+
+            
+
             programmer.LoggedIn = false;
             programmerService.Commit();
         }

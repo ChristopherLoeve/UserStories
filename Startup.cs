@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using UserStories.Services;
 
 namespace UserStories
@@ -29,6 +30,15 @@ namespace UserStories
             services.AddSingleton<ProgrammerService, ProgrammerService>();
             services.AddSingleton<JsonFileService, JsonFileService>();
             services.AddSingleton<FixesService, FixesService>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+            services.AddMvc()
+                .AddRazorPagesOptions(options =>
+                    {
+                        options.Conventions.AuthorizeFolder("/Backlog");
+                    }
+                );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,11 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using UserStories.Models;
 using UserStories.Services;
 
@@ -33,7 +38,18 @@ namespace UserStories.Pages.Account
             if (doesProgrammerExist)
             {
                 TempData["LoginSuccess"] = "Login Successful!";
-                return RedirectToPage("../Index");
+
+                var scheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+                var user = new ClaimsPrincipal
+                (
+                    new ClaimsIdentity
+                    (
+                            new [] { new Claim(ClaimTypes.Name, Email), },
+                            scheme
+                    )
+                );
+                return SignIn(user, scheme);
             }
             TempData["Message"] = "Invalid email or password";
             return RedirectToPage("./Login");

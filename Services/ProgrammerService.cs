@@ -56,12 +56,11 @@ namespace UserStories.Services
             {
                 if (programmers.Any(u => u.Password == password)) // Checks if password matches password.
                 {
-                    Programmer = programmers.SingleOrDefault(u => u.Email == email);
-                    Programmer.LoggedIn = true;
-                    Commit();
+                    return true;
                 }
             }
-            return Programmer.LoggedIn;
+
+            return false;
 
         }
         /// <summary>
