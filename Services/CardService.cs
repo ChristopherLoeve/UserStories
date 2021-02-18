@@ -107,7 +107,7 @@ namespace UserStories.Services
 
         public void Commit()
         {
-            jsonFileService.SaveJsonCards(cardList);
+            jsonFileService.SaveJsonCards(GetUserStories(), GetFixes());
         }
 
 

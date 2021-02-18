@@ -40,14 +40,9 @@ namespace UserStories.Services
 
         public IEnumerable<Card> GetJsonCards()
         {
-            List<UserStory> userStories = GetJsonUserStories().ToList();
-            List<Fix> fixes = GetJsonFixes().ToList();
-
             List<Card> cards = new List<Card>();
-            cards.AddRange(userStories);
-            cards.AddRange(fixes);
-
-            
+            cards.AddRange(GetJsonUserStories().ToList());
+            cards.AddRange(GetJsonFixes().ToList());
             return cards;
         }
 
