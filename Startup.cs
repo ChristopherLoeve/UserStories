@@ -28,7 +28,6 @@ namespace UserStories
             services.AddRazorPages();
             services.AddSingleton<ProgrammerService, ProgrammerService>();
             services.AddSingleton<JsonFileService, JsonFileService>();
-            services.AddSingleton<FixesService, FixesService>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
             services.AddMvc()

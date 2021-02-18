@@ -24,7 +24,6 @@ namespace UserStories.Pages.Fixes
 
         public void OnGet()
         {
-            fix = new Fix();
         }
 
         public IActionResult OnPost()

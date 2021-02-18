@@ -71,14 +71,6 @@ namespace UserStories.Services
 
         public void AddCard(Card card)
         {
-            if (cardList.Count != 0)
-            {
-                card.Id = cardList.Last().Id + 1;
-            }
-            else
-            {
-                card.Id = 1;
-            }
             cardList.Add(card);
             Commit();
         }
@@ -95,10 +87,10 @@ namespace UserStories.Services
             return cardToBeDeleted;
         }
 
-        public void UpdateCard(int id, Card updateCard)
+        public void UpdateCard(int id, Card card)
         {
             DeleteCard(id);
-            AddCard(updateCard);
+            AddCard(card);
             Commit();
         }
         

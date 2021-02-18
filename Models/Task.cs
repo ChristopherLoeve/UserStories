@@ -14,7 +14,7 @@ namespace UserStories.Models
             TaskDone = false;
         }
 
-        public Task(int id, string title, string description) : base(id, title, description)
+        public Task(string title, string description) : base(title, description)
         {
             TaskDone = false;
         }

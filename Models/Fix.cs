@@ -14,7 +14,7 @@ namespace UserStories.Models
             Fixed = false;
         }
 
-        public Fix(int id, string title, string description) : base(id, title, description)
+        public Fix(string title, string description) : base(title, description)
         {
             Fixed = false;
 

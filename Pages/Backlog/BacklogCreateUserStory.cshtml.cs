@@ -31,7 +31,6 @@ namespace UserStories.Pages.Backlog
         public void OnGet(int id)
         {
             UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
-            UserStory = new UserStory();
             UserStory.Description = "As \nI want to \nSo \n\nAcceptance Criteria:\nGiven that \nWhen I \nThen I ";
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
         }

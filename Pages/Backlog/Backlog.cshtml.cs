@@ -25,7 +25,6 @@ namespace UserStories.Pages.Backlog
         public void OnGet()
         {
             UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
-            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveRight(int id)

@@ -170,11 +170,10 @@
 
                 <form method="post" enctype="multipart/form-data">
 
-                    <input type="hidden" asp-for="UserStory.Id" />
                     <div class="modal-header">
                         <div class="form-group">
                             <label asp-for="@Model.UserStory.Title" class="control-label"></label>
-                            <input asp-for="@Model.UserStory.Title" class="form-control" />
+                            <input asp-for="@Model.UserStory.Title" class="form-control"/>
                             <span asp-validation-for="@Model.UserStory.Title" class="text-danger"></span>
                         </div>
                     </div>
@@ -227,7 +226,7 @@
 
                     <div class="modal-footer align-content-center">
                         <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="UserStories">Cancel</a>
-                        <input id="Create User Story" type="submit" value="Create" class="btn btn-success" style="width: 15rem" />
+                        <input id="Create User Story" type="submit" value="Create" class="btn btn-success" style="width: 15rem"/>
                     </div>
 
                 </form>

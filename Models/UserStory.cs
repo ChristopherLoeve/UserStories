@@ -34,7 +34,7 @@ namespace UserStories.Models
         {
         }
 
-        public UserStory(string title, string description, int businessValue, int priority, StoryPoint storyPoints, int id, Column column) : base(id, title, description)
+        public UserStory(string title, string description, int businessValue, int priority, StoryPoint storyPoints,Column column) : base(title, description)
         {
             BusinessValue = businessValue;
             Priority = priority;
