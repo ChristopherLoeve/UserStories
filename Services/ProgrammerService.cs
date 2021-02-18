@@ -33,7 +33,7 @@ namespace UserStories.Services
         public void AddProgrammer(Programmer programmer)
         {
             programmers.Add(programmer);
-            JsonFileService.Save(programmers);
+            JsonFileService.SaveProgrammers(programmers);
         }
         /// <summary>
         /// Gets current logged in user.
@@ -95,7 +95,7 @@ namespace UserStories.Services
 
         public void Commit()
         {
-            JsonFileService.Save(programmers);
+            JsonFileService.SaveProgrammers(programmers);
         }
     }
 }

@@ -12,15 +12,15 @@ namespace UserStories.Pages.Fixes
     public class AddFixModel : PageModel
     {
         public ProgrammerService ProgrammerService { get; private set; }
-        private FixesService fixesService;
+        private CardService cardService;
         public string LayoutPage { get; set; }
 
         [BindProperty] public Fix fix { get; set; }
 
-        public AddFixModel(FixesService fixesService, ProgrammerService programmerService)
+        public AddFixModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.fixesService = fixesService;
+            this.cardService = cardService;
         }
 
         public void OnGet()
@@ -31,7 +31,7 @@ namespace UserStories.Pages.Fixes
 
         public IActionResult OnPost()
         {
-            fixesService.AddFix(fix);
+            cardService.AddCard(fix);
             return RedirectToPage("Fixes");
         }
     }

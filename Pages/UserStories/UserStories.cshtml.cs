@@ -12,7 +12,7 @@ namespace UserStories.Pages.UserStories
     public class UserStoriesModel : PageModel
     {
         public ProgrammerService ProgrammerService { get; private set; }
-        public UserStoryService userStoryService;
+        public CardService cardService;
         public List<UserStory> UserStories { get; private set; }
         public string LayoutPage { get; set; }
         public List<UserStory> ToDoStories { get; private set; }
@@ -22,34 +22,34 @@ namespace UserStories.Pages.UserStories
 
 
 
-        public UserStoriesModel(UserStoryService userStoryService, ProgrammerService programmerService)
+        public UserStoriesModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
         }
 
 
         public void OnGet()
         {
-            UserStories = userStoryService.GetUserStories();
+            UserStories = cardService.GetUserStories();
             LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveLeft(int id)
         {
-            userStoryService.MoveStoryLeft(id);
+            cardService.MoveStoryLeft(id);
             OnGet();
         }
 
         public void OnGetMoveRight(int id)
         {
-            userStoryService.MoveStoryRight(id);
+            cardService.MoveStoryRight(id);
             OnGet();
         }
 
         public IActionResult OnGetUpdateObject(int id, string column)
         {
-            UserStories = userStoryService.GetUserStories();
+            UserStories = cardService.GetUserStories();
             string columnName = string.Empty;
             foreach (char character in column)
             {
@@ -64,7 +64,8 @@ namespace UserStories.Pages.UserStories
                     }
                 }
             }
-            userStoryService.UpdateColumn(id, columnName);
+
+            cardService.UpdateCard(id, cardService.GetCard(id));
             return Page();
         }
         

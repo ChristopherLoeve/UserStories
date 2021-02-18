@@ -14,23 +14,23 @@ namespace UserStories.Pages.UserStories
     {
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
         public ProgrammerService ProgrammerService { get; private set; }
         public string LayoutPage { get; set; }
 
-        public EditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
+        public EditUserStoryModel(CardService cardService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
             this.htmlHelper = htmlHelper;
         }
 
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStories();
-            UserStory = userStoryService.GetUserStory(id);
+            UserStories = cardService.GetUserStories();
+            UserStory = (UserStory)cardService.GetCard(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
             LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
@@ -39,12 +39,12 @@ namespace UserStories.Pages.UserStories
         {
             if (!ModelState.IsValid)
             {
-                UserStories = userStoryService.GetUserStories();
+                UserStories = cardService.GetUserStories();
                 StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
                 return Page();
             }
 
-            userStoryService.EditUserStory(UserStory.Id, UserStory);
+            cardService.UpdateCard(UserStory.Id, UserStory);
 
             return RedirectToPage("UserStories");
         }

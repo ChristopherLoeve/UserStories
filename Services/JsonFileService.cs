@@ -29,11 +29,6 @@ namespace UserStories.Services
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "Fixes.json"); }
         }
 
-        private string JsonTemplateName
-        {
-            get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "UserStoriesTemplate.json"); }
-        }
-
         private string JsonProgrammerName
         {
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", "Programmers.json"); }
@@ -41,12 +36,25 @@ namespace UserStories.Services
 
 
 
-        public IEnumerable<UserStory> GetJsonUserStories()
+
+
+        public IEnumerable<Card> GetJsonCards()
         {
-            using (var jsonFileReader = File.OpenText(JsonFileName))
-            {
-                return JsonSerializer.Deserialize<UserStory[]>(jsonFileReader.ReadToEnd());
-            }
+            List<UserStory> userStories = GetJsonUserStories().ToList();
+            List<Fix> fixes = GetJsonFixes().ToList();
+
+            List<Card> cards = new List<Card>();
+            cards.AddRange(userStories);
+            cards.AddRange(fixes);
+
+            
+            return cards;
+        }
+
+        public void SaveJsonCards(List<UserStory> userStories, List<Fix> fixes)
+        {
+            SaveJsonUserStories(userStories);
+            SaveJsonFixes(fixes);
         }
 
         public void SaveJsonUserStories(List<UserStory> userStories) 
@@ -62,11 +70,11 @@ namespace UserStories.Services
             }
         }
 
-        public IEnumerable<Fix> GetJsonFixes()
+        public IEnumerable<UserStory> GetJsonUserStories()
         {
-            using (var jsonFileReader = File.OpenText(JsonFixesFileName))
+            using (var jsonFileReader = File.OpenText(JsonFileName))
             {
-                return JsonSerializer.Deserialize<Fix[]>(jsonFileReader.ReadToEnd());
+                return JsonSerializer.Deserialize<UserStory[]>(jsonFileReader.ReadToEnd());
             }
         }
 
@@ -83,39 +91,15 @@ namespace UserStories.Services
             }
         }
 
-        public void ResetToTemplate()
+        public IEnumerable<Fix> GetJsonFixes()
         {
-            List<UserStory> userStories = new List<UserStory>();
-            using (var jsonFileReader = File.OpenText(JsonTemplateName))
+            using (var jsonFileReader = File.OpenText(JsonFixesFileName))
             {
-                userStories = JsonSerializer.Deserialize<UserStory[]>(jsonFileReader.ReadToEnd()).ToList();
-            }
-
-            using (var jsonFileWriter = File.Create(JsonFileName))
-            {
-                var jsonWriter = new Utf8JsonWriter(jsonFileWriter, new JsonWriterOptions()
-                {
-                    SkipValidation = false,
-                    Indented = true
-                });
-                JsonSerializer.Serialize<UserStory[]>(jsonWriter, userStories.ToArray());
+                return JsonSerializer.Deserialize<Fix[]>(jsonFileReader.ReadToEnd());
             }
         }
 
-        public void SaveAsTemplate(List<UserStory> userStories)
-        {
-            using (var jsonFileWriter = File.Create(JsonTemplateName))
-            {
-                var jsonWriter = new Utf8JsonWriter(jsonFileWriter, new JsonWriterOptions()
-                {
-                    SkipValidation = false,
-                    Indented = true
-                });
-                JsonSerializer.Serialize<UserStory[]>(jsonWriter, userStories.ToArray());
-            }
-        }
-
-        public void Save(List<Programmer> programmers)
+        public void SaveProgrammers(List<Programmer> programmers)
         {
 
             using (var jsonFileWriter = File.Create(JsonProgrammerName))

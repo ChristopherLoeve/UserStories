@@ -15,22 +15,22 @@ namespace UserStories.Pages.Backlog
         public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
         public string LayoutPage { get; set; }
 
-        public BacklogEditUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
+        public BacklogEditUserStoryModel(CardService cardService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
             this.htmlHelper = htmlHelper;
         }
 
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
-            UserStory = userStoryService.GetUserStory(id);
+            UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
+            UserStory = (UserStory)cardService.GetCard(id);
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
             LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
@@ -39,12 +39,12 @@ namespace UserStories.Pages.Backlog
         {
             if (!ModelState.IsValid)
             {
-                UserStories = userStoryService.GetUserStories();
+                UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
                 StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
                 return Page();
             }
 
-            userStoryService.EditUserStory(UserStory.Id, UserStory);
+            cardService.UpdateCard(UserStory.Id, UserStory);
 
             return RedirectToPage("Backlog");
         }

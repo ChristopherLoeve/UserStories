@@ -15,7 +15,7 @@ namespace UserStories.Models
 
         public Card()
         {
-            
+            CreationDate = DateTime.Now;
         }
 
         protected Card(int id, string title, string description)

@@ -15,24 +15,24 @@ namespace UserStories.Pages.Fixes
         public ProgrammerService ProgrammerService { get; private set; }
 
         [BindProperty] public Fix Fix { get; set; }
-        private FixesService fixesService;
+        private CardService cardService;
         public string LayoutPage { get; set; }
 
-        public EditFixModel(FixesService fixesService, ProgrammerService programmerService)
+        public EditFixModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.fixesService = fixesService;
+            this.cardService = cardService;
         }
         public void OnGet(int id)
         {
-            Fix = fixesService.GetFix(id);
-            fixesService.GetFixes();
+            Fix = (Fix)cardService.GetCard(id);
+            cardService.GetFixes();
             LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public IActionResult OnPost(int id)
         {
-            fixesService.UpdateFix(Fix, id);
+            cardService.UpdateCard(id, Fix);
             return RedirectToPage("Fixes");
         }
     }
