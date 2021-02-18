@@ -13,19 +13,19 @@ namespace UserStories.Pages.UserStories
     {
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
         public ProgrammerService ProgrammerService { get; private set; }
 
-        public UserStoryDetailModel(UserStoryService userStoryService, ProgrammerService programmerService)
+        public UserStoryDetailModel(CardService cardService, ProgrammerService programmerService)
         {
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
             ProgrammerService = programmerService;
         }
 
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStories();
-            UserStory = userStoryService.GetUserStory(id);
+            UserStories = cardService.GetUserStories();
+            UserStory = (UserStory)cardService.GetCard(id);
         }
     }
 }

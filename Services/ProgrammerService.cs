@@ -33,7 +33,7 @@ namespace UserStories.Services
         public void AddProgrammer(Programmer programmer)
         {
             programmers.Add(programmer);
-            JsonFileService.Save(programmers);
+            JsonFileService.SaveProgrammers(programmers);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace UserStories.Services
 
         public void Commit()
         {
-            JsonFileService.Save(programmers);
+            JsonFileService.SaveProgrammers(programmers);
         }
     }
 }

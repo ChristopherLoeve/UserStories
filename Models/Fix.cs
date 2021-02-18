@@ -5,27 +5,19 @@ using System.Threading.Tasks;
 
 namespace UserStories.Models
 {
-    public class Fix
+    public class Fix : Card
     {
-        public int Id { get; set; }
-        public static int StatId {get; set;}
-        public string Title { get; set; }
-        public string Description { get; set; }
         public bool Fixed { get; set; }
 
-        public Fix(string description)
-        {
-            StatId++;
-            Id = StatId;
-            Description = description;
-            Fixed = false;
-        }
         public Fix()
         {
-            StatId++;
-            Id = StatId;
             Fixed = false;
         }
 
+        public Fix(int id, string title, string description) : base(id, title, description)
+        {
+            Fixed = false;
+
+        }
     }
 }

@@ -12,25 +12,17 @@ namespace UserStories.Pages.Fixes
     public class DeleteFixModel : PageModel
     {
         public ProgrammerService ProgrammerService { get; private set; }
-        private FixesService fixesService;
-        public List<Fix> fixes { get; private set; }
+        private CardService cardService;
 
-        public DeleteFixModel(FixesService fixesService, ProgrammerService programmerService)
+        public DeleteFixModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.fixesService = fixesService;
+            this.cardService = cardService;
         }
 
         public IActionResult OnGet(int id)
         {
-            fixesService.GetFix(id);
-            fixesService.DeleteFix(fixesService.GetFix(id));
-            return RedirectToPage("Fixes");
-        }
-
-        public IActionResult OnPost(int id)
-        {
-            fixesService.DeleteFix(fixesService.GetFix(id));
+            cardService.DeleteCard(id);
             return RedirectToPage("Fixes");
         }
     }

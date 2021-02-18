@@ -14,22 +14,23 @@ namespace UserStories.Pages.Backlog
     public class BacklogModel : PageModel
     {
         public ProgrammerService ProgrammerService { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
         public List<UserStory> UserStories { get; private set; }
 
-        public BacklogModel(UserStoryService userStoryService, ProgrammerService programmerService)
+        public BacklogModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
         }
         public void OnGet()
         {
-            UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
+            UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
+            LayoutPage = "." + ProgrammerService.GetProgrammerLayout();
         }
 
         public void OnGetMoveRight(int id)
         {
-            userStoryService.MoveStoryRight(id);
+            cardService.MoveStoryRight(id);
             OnGet();
         }
     }

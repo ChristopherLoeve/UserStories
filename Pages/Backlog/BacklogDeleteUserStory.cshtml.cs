@@ -14,23 +14,23 @@ namespace UserStories.Pages.Backlog
         public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
 
-        public BacklogDeleteUserStoryModel(UserStoryService userStoryService, ProgrammerService programmerService)
+        public BacklogDeleteUserStoryModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
         }
 
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
-            UserStory = userStoryService.GetUserStory(id);
+            UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
+            UserStory = (UserStory)cardService.GetCard(id);
         }
 
         public IActionResult OnPost()
         {
-            userStoryService.DeleteUserStory(UserStory.Id);
+            cardService.DeleteCard(UserStory.Id);
             return RedirectToPage("Backlog");
         }
     }

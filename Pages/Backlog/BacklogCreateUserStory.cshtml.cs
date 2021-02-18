@@ -15,22 +15,22 @@ namespace UserStories.Pages.Backlog
         public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
 
         private readonly IHtmlHelper htmlHelper;
         public IEnumerable<SelectListItem> StoryPoints { get; set; }
         public string LayoutPage { get; set; }
 
-        public BacklogCreateUserStoryModel(UserStoryService userStoryService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
+        public BacklogCreateUserStoryModel(CardService cardService, IHtmlHelper htmlHelper, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
             this.htmlHelper = htmlHelper;
         }
 
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStoriesByColumn(Column.Backlog);
+            UserStories = cardService.GetUserStoriesByColumn(Column.Backlog);
             UserStory = new UserStory();
             UserStory.Description = "As \nI want to \nSo \n\nAcceptance Criteria:\nGiven that \nWhen I \nThen I ";
             StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
@@ -40,13 +40,13 @@ namespace UserStories.Pages.Backlog
         {
             if (!ModelState.IsValid)
             {
-                UserStories = userStoryService.GetUserStories();
+                UserStories = cardService.GetUserStories();
                 StoryPoints = htmlHelper.GetEnumSelectList<StoryPoint>();
                 return Page();
             }
 
             UserStory.Column = (Column)id;
-            userStoryService.AddUserStory(UserStory);
+            cardService.AddCard(UserStory);
             return RedirectToPage("Backlog");
         }
     }

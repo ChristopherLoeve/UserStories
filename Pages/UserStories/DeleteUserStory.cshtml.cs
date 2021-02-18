@@ -14,24 +14,23 @@ namespace UserStories.Pages.UserStories
         public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        private UserStoryService userStoryService;
+        private CardService cardService;
 
-        public DeleteUserStoryModel(UserStoryService userStoryService, ProgrammerService programmerService)
+        public DeleteUserStoryModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.userStoryService = userStoryService;
+            this.cardService = cardService;
         }
 
         public void OnGet(int id)
         {
-            UserStories = userStoryService.GetUserStories();
-            UserStory = userStoryService.GetUserStory(id);
-
+            UserStories = cardService.GetUserStories();
+            UserStory = (UserStory)cardService.GetCard(id);
         }
 
         public IActionResult OnPost()
         {
-            userStoryService.DeleteUserStory(UserStory.Id);
+            cardService.DeleteCard(UserStory.Id);
             return RedirectToPage("UserStories");
         }
     }

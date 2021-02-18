@@ -11,18 +11,18 @@ namespace UserStories.Pages.Fixes
     public class FixesModel : PageModel
     {
         public ProgrammerService ProgrammerService { get; private set; }
-        private FixesService fixesService;
+        private CardService cardService;
         public List<Fix> Fixes { get; private set; }
 
-        public FixesModel(FixesService fixesService, ProgrammerService programmerService)
+        public FixesModel(CardService cardService, ProgrammerService programmerService)
         {
             ProgrammerService = programmerService;
-            this.fixesService = fixesService;
+            this.cardService = cardService;
         }
 
         public void OnGet()
         {
-            Fixes = fixesService.GetFixes();
+            Fixes = cardService.GetFixes();
         }
     }
 }
