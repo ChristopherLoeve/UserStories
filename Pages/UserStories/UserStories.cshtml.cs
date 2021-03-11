@@ -41,6 +41,18 @@ namespace UserStories.Pages.UserStories
             OnGet();
         }
 
+        public void OnGetFilterPriorityAsc()
+        {
+            UserStories = cardService.FilterByPriorityAsc();
+            
+        }        
+        
+        public void OnGetFilterPriorityDec()
+        {
+            UserStories = cardService.FilterByPriorityDec();
+            
+        }
+
         public IActionResult OnGetUpdateObject(int id, string column)
         {
             UserStories = cardService.GetUserStories();

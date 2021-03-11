@@ -145,6 +145,22 @@ namespace UserStories.Services
             Commit();
         }
 
+        public List<UserStory> FilterByPriorityAsc()
+        {
+            var filterdByPriority = from u in GetUserStories()
+                                    orderby u.Priority ascending
+                                    select u;
+            return filterdByPriority.ToList();
+        }        
+        
+        public List<UserStory> FilterByPriorityDec()
+        {
+            var filterdByPriority = from u in GetUserStories()
+                                    orderby u.Priority descending
+                                    select u;
+            return filterdByPriority.ToList();
+        }
+
        
     }
 }

@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "User Stories";
     <h1 class="text-center">User Stories</h1>
-
     <div class="card-group">
 
         <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none" id="To_Do">
@@ -162,13 +161,25 @@
             }
             <div class="empty"></div>
         </div>
+
+        <thread>
+            <th>
+                <a data-toggle="tooltip"  asp-page-handler="FilterPriorityAsc"><i class="fa fa-arrow-up"></i></a>
+            </th>
+            <th>
+                <a data-toggle="tooltip" asp-page-handler="FilterPriorityDec"><i class="fa fa-arrow-down"></i></a>
+            </th>
+        </thread>
+
+
     </div>
 }
 
 
-@section Scripts
+
+    @section Scripts
 {
-    <script src="~/js/showTooltips.js"></script>
-    <script src="~/js/dragNDrop.js"></script>
-}
+        <script src="~/js/showTooltips.js"></script>
+        <script src="~/js/dragNDrop.js"></script>
+    }
 
