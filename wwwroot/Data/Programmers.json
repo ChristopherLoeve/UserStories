@@ -5,7 +5,6 @@
     "Email": "oscar@mail.dk",
     "Password": "12345678",
     "FullName": "Oscar Hemmingsen",
-    "ProgrammerId": 1,
-    "LoggedIn": true
+    "ProgrammerId": 0
   }
 ]

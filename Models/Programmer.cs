@@ -22,36 +22,13 @@ namespace UserStories.Models
         {
             get { return $"{FirstName} {LastName}"; }
         }
-        public int ProgrammerId { get; private set; }
+        public int ProgrammerId { get; }
         public static int InstanceCount { get; set; }
-        public bool LoggedIn { get; set; }
 
         public Programmer()
         {
-            InstanceCount += 1;
-            ProgrammerId = InstanceCount;
+            ProgrammerId = InstanceCount++;
         }
-        public Programmer(int instancecount)
-        {
-            InstanceCount = instancecount;
-            FirstName = "Guest";
-            LastName = "Gustav";
-            Email = "Guest@gmail.com";
-        }
-
-        ///// <summary>
-        ///// Checks if the user already have played the game, returns true or false.
-        ///// </summary>
-        ///// <param name="game"></param>
-        ///// <returns></returns>
-        //public bool HavePlayed(Game game)
-        //{
-
-        //    return AlreadyPlayed.Contains(game);
-
-        //}
-
-
-
+        
     }
 }

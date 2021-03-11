@@ -16,7 +16,7 @@ namespace UserStories.Pages.Account
         [TempData] // Binds line 38 to Message property below, this ensures it will only show one time as TempData is cleared.
         public string Message { get; set; }
         [BindProperty]
-        public new Programmer Programmer { get; set; }
+        public Programmer Programmer { get; set; }
 
 
         public RegisterModel(ProgrammerService programmerService)

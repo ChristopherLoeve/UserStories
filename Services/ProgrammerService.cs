@@ -64,6 +64,16 @@ namespace UserStories.Services
             return programmers.Any(u => u.Email == email); // Checks all users in list "users" if incoming email matches one of them.
         }
 
+        public Programmer FindProgrammerByEmail(string email)
+        {
+            foreach (Programmer p in programmers)
+            {
+                if (p.Email == email) return p;
+            }
+
+            return null;
+        }
+
         public void Commit()
         {
             JsonFileService.SaveProgrammers(programmers);
