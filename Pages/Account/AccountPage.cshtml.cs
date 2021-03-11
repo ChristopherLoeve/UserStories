@@ -50,9 +50,18 @@ namespace UserStories.Pages.Account
             return Page();
         }
 
-        public IActionResult OnPostDeletePicture()
+        public IActionResult OnGetDeletePicture()
         {
             Programmer = ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name);
+            try
+            {
+
+                System.IO.File.Delete(Path.Combine(_he.WebRootPath, "Images/ProfilePictures", Programmer.ProfilePictureName));
+            }
+            catch (Exception e)
+            {
+            }
+
             ProgrammerService.AddProfilePicture(Programmer.ProgrammerId, "");
             return Page();
         }

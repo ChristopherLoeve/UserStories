@@ -13,7 +13,7 @@
         @if (!String.IsNullOrEmpty(@Model.Programmer.ProfilePictureName))
         {
             <img class="rounded-circle" style="width: 200px; height: 200px;" src="~/images/ProfilePictures/@Model.Programmer.ProfilePictureName" />
-            <p><a class="btn" type="button" title="Delete Picture" asp-page-handler="OnPostDeletePicture">Delete Picture</a></p>
+            <p><a class="btn" type="button" title="Delete Picture" asp-page-handler="DeletePicture">Delete Picture</a></p>
         }
         else
         {
