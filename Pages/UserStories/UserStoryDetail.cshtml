@@ -1,5 +1,6 @@
 ﻿@page
 @using global::UserStories.Models
+@using global::UserStories.Services
 @model UserStories.UserStoryDetailModel
 @{
     ViewData["Title"] = "Viewing " + @Model.UserStory.Title;
@@ -178,6 +179,30 @@
                     <p style="white-space: pre-line">@Model.UserStory.Description</p>
                     <p><b>Priority:</b> @Model.UserStory.Priority</p>
                     <p><b>Business value:</b> @Model.UserStory.BusinessValue</p>
+                    <p>
+                        <b>Tasks:</b>
+                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new task in &quot;Done&quot;" asp-page="CreateUserStoryTask" asp-route-id="@Model.UserStory.Id">
+                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
+                        </a>
+                        @foreach (var card in @Model.Tasks)
+                        {
+                            if (card is @Models.Task)
+                            {
+                                <div class="card mb-2 empty" style="padding: 5px;">
+                                    <div class="card-header">
+                                        <p>@card.Title</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>@card.Description</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Task" asp-page="EditUserStory" asp-route-id="card.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Task" asp-page="DeleteUserStory" asp-route-id="card.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </p>
                     <p><b>Story points:</b> @Model.UserStory.StoryPoints.ToString().Replace('_', ' ')</p>
                     <p><b>Status:</b> @Model.UserStory.Column.ToString().Replace('_', ' ')</p>
                     <p><b>Creation date:</b> @Model.UserStory.CreationDate</p>

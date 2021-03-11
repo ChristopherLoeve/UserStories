@@ -29,13 +29,16 @@ namespace UserStories.Models
         public int Priority { get; set; }
         public StoryPoint StoryPoints { get; set; }
         public Column Column { get; set; }
+        public List<Task> Tasks { get; set; }
 
         public UserStory()
         {
+            Tasks = new List<Task>();
         }
 
         public UserStory(string title, string description, int businessValue, int priority, StoryPoint storyPoints,Column column) : base(title, description)
         {
+            Tasks = new List<Task>();
             BusinessValue = businessValue;
             Priority = priority;
             StoryPoints = storyPoints;

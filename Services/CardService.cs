@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserStories.Models;
+using Task = UserStories.Models.Task;
 
 namespace UserStories.Services
 {
@@ -34,6 +35,22 @@ namespace UserStories.Services
                 }
             }
             return userStories;
+        }
+
+
+
+        public List<Task> GetTasks()
+        {
+            List<Task> tasks = new List<Task>();
+
+            foreach (Card card in cardList)
+            {
+                if (card is Task)
+                {
+                    tasks.Add((Task)card);
+                }
+            }
+            return tasks;
         }
 
         public List<UserStory> GetUserStoriesByColumn(Column column)
@@ -73,6 +90,19 @@ namespace UserStories.Services
         {
             cardList.Add(card);
             Commit();
+        }
+
+        public void AddTask(Task task, int userStoryId)
+        {
+            UserStory userStory = (UserStory)GetCard(userStoryId);
+            userStory.Tasks.Add(task);
+            Commit();
+        }
+
+        public List<Task> GetUserStoryTasks(int id)
+        {
+            UserStory userStory = (UserStory)GetCard(id);
+            return userStory.Tasks;
         }
 
         public Card DeleteCard(int id)

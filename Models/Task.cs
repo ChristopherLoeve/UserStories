@@ -8,7 +8,6 @@ namespace UserStories.Models
     public class Task : Card
     {
         public bool TaskDone { get; set; }
-
         public Task()
         {
             TaskDone = false;
