@@ -24,10 +24,12 @@ namespace UserStories.Models
         }
         public int ProgrammerId { get; }
         public static int InstanceCount { get; set; }
+        public string ProfilePictureName { get; set; }
 
         public Programmer()
         {
             ProgrammerId = InstanceCount++;
+            ProfilePictureName = "";
         }
         
     }

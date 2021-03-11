@@ -74,6 +74,12 @@ namespace UserStories.Services
             return null;
         }
 
+        public void AddProfilePicture(int id, string fileName)
+        {
+            programmers[id].ProfilePictureName = fileName;
+            Commit();
+        }
+
         public void Commit()
         {
             JsonFileService.SaveProgrammers(programmers);

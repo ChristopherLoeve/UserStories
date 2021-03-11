@@ -2,6 +2,38 @@
 @model Account.AccountPageModel
 @{
 }
+<div class="card mb-2" style="margin: auto; width: 75%; padding: 5px; border: none">
+    <div class="card-header p-2 text-center" style="height: 4rem; border: none;">
+        <h5 class="card-title"><a class="btn"><i class="fa fa-edit" style="visibility: hidden"></i></a> Your Profile <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Profile" asp-page="EditUser" asp-route-id="@Model.Programmer"><i class="fa fa-edit" style="color: grey"></i></a></h5>
+    </div>
+    <div class="p-1"></div>
+    <div class="card-body p-1;" Style="margin: auto; max-width: 100%">
 
-<p>Your name: @Model.Programmer.FullName</p>
-<p>Your email: @Model.Programmer.Email</p>
+
+        @if (!String.IsNullOrEmpty(@Model.Programmer.ProfilePictureName))
+        {
+            <img class="rounded-circle" style="width: 200px; height: 200px;" src="~/images/ProfilePictures/@Model.Programmer.ProfilePictureName" />
+            <p><a class="btn" type="button" title="Delete Picture" asp-page-handler="OnPostDeletePicture">Delete Picture</a></p>
+        }
+        else
+        {
+
+            <form method="post" enctype="multipart/form-data">
+
+                Select an Image to use (Square images will look better)
+                <input id="File1" type="file" asp-for="Uploadfiles" />
+                <div class="form-group">
+                    <input id="Upload Picture" type="submit" value="Upload Picture" class="btn-success" />
+                </div>
+            </form>
+        }
+        <h4>Name: @Model.Programmer.FullName</h4>
+        <h4>E-mail: @Model.Programmer.Email</h4>
+    </div>
+</div>
+
+
+    @section Scripts
+{
+        <script src="~/js/showTooltips.js"></script>
+    }

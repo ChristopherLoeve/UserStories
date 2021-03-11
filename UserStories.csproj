@@ -15,4 +15,8 @@
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\ProfilePictures\" />
+  </ItemGroup>
+
 </Project>

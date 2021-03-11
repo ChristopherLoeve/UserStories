@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserStories.Models;
@@ -13,14 +16,45 @@ namespace UserStories.Pages.Account
     {
         public Programmer Programmer;
         public ProgrammerService ProgrammerService { get; private set; }
-        public AccountPageModel(ProgrammerService programmerService)
+        [BindProperty]
+        public IFormFile Uploadfiles { get; set; }
+        private readonly IWebHostEnvironment _he;
+
+
+
+        public AccountPageModel(ProgrammerService programmerService, IWebHostEnvironment he)
         {
             ProgrammerService = programmerService;
+
+            _he = he;
         }
 
         public void OnGet()
         {
             Programmer = ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name);
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+
+            Programmer = ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name);
+
+            var Filupload = Path.Combine(_he.WebRootPath, "Images/ProfilePictures", Uploadfiles.FileName);
+            using (var Fs = new FileStream(Filupload, FileMode.Create))
+            {
+                await Uploadfiles.CopyToAsync(Fs);
+                ViewData["Message"] = "the Selected File" + Uploadfiles.FileName + "Is uploaded succesfully...";
+            }
+            ProgrammerService.AddProfilePicture(Programmer.ProgrammerId, Uploadfiles.FileName);
+
+            return Page();
+        }
+
+        public IActionResult OnPostDeletePicture()
+        {
+            Programmer = ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name);
+            ProgrammerService.AddProfilePicture(Programmer.ProgrammerId, "");
+            return Page();
         }
     }
 }
