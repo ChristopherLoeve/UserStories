@@ -20,11 +20,9 @@
 
             <form method="post" enctype="multipart/form-data">
 
-                Select an Image to use (Square images will look better)
-                <input id="File1" type="file" asp-for="Uploadfiles" />
-                <div class="form-group">
-                    <input id="Upload Picture" type="submit" value="Upload Picture" class="btn-success" />
-                </div>
+                <label for="img">Select image to upload: </label>
+                <input id="File1" type="file" asp-for="Uploadfiles" accept="image/*"/>
+                    <input id="Upload Picture" type="submit" value="Upload Image"/>
             </form>
         }
         <h4>Name: @Model.Programmer.FullName</h4>
