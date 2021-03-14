@@ -19,13 +19,12 @@
 
             <div class="card mb-2">
                 <div class="card-header p-1" style="height:2rem">
-                    <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                    <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                 </div>
                 <div class="card-body p-0">
                     <p class="card-text" style="height: 15rem; white-space: pre-line; padding-left: 5px; padding-right: 5px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 10; -webkit-box-orient: vertical;">@userStory.Description</p>
                 </div>
-                <div class="card-footer" style="align-content: center">
-                    <a class="btn"><i class="fa fa-arrow-left" style="visibility: hidden"></i></a>
+                <div class="card-footer" align="center">
                     <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="BacklogUserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                     <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="BacklogEditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
                     <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete user story" asp-page="BacklogDeleteUserStory" asp-route-id="@userStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>

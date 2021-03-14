@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UserStories.Models;
@@ -36,7 +37,6 @@ namespace UserStories.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-
             Programmer = ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name);
 
             var Filupload = Path.Combine(_he.WebRootPath, "Images\\ProfilePictures", Programmer.Email + "." + Uploadfiles.ContentType.Remove(0,6));

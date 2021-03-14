@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using UserStories.Models;
 
 namespace UserStories.Services
@@ -46,10 +49,7 @@ namespace UserStories.Services
         {
             if (IsEmailInUse(email))
             {
-                if (programmers.Any(u => u.Password == password)) // Checks if password matches password.
-                {
-                    return true;
-                }
+                return (FindProgrammerByEmail(email).ValidatePassword(password));
             }
             return false;
 

@@ -32,9 +32,9 @@ namespace UserStories.Pages.Account
 
         public IActionResult OnPost()
         {
-            bool correctLogin = programmerService.ValidateLogin(Email, Password);
-            if (!correctLogin)
+            if (!programmerService.ValidateLogin(Email, Password))
             {
+                ModelState.AddModelError("Email", "The email or password is incorrect");
                 return Page();
             }
             TempData["LoginSuccess"] = "Login Successful!";

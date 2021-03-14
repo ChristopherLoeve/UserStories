@@ -28,12 +28,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height:2rem">
-                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer" align="center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Backlog" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -67,12 +67,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
-                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer" align="center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;To Do&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -106,12 +106,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
-                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer" align="center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -145,12 +145,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
-                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer" align="center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
