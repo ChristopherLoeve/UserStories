@@ -1,0 +1,105 @@
+﻿@page "{handler?}"
+@model Account.EditAccountModel
+@{
+}
+<div class="card mb-2" style="margin: auto; width: 75%; padding: 5px; border: none">
+    <div class="card-header p-2 text-center" style="height: 4rem; border: none; background: none">
+        <h1 class="card-title"><a class="btn"><i class="fa fa-edit" style="visibility: hidden"></i></a> Your Profile <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Profile" asp-page="EditAccount"><i class="fa fa-edit" style="color: grey"></i></a></h1>
+    </div>
+    <div class="p-1"></div>
+    <div class="card-body p-1;" Style="margin: auto; width: 100%" align="center">
+        <div class="row">
+            <div class="col-4" align="center">
+                @if (!String.IsNullOrEmpty(@Model.Programmer.ProfilePictureName))
+                {
+                    <img class="rounded-circle" style="width: 200px; height: 200px;" src="~/images/ProfilePictures/@Model.Programmer.ProfilePictureName" />
+                    <p><a class="btn text-black-50" type="button" title="Delete Picture">Delete Picture</a></p>
+                }
+                else
+                {
+
+                    <form method="post" enctype="multipart/form-data">
+
+                        <label class="font-weight-bold" for="img">Upload profile picture</label>
+                        <input id="File1" type="file" accept="image/*" />
+                        <input id="Upload Picture" type="submit" value="Upload Image" />
+                    </form>
+                }
+            </div>
+            <div class="col-8" align="center">
+                <h4>Name: @Model.Programmer.FullName</h4>
+                <h4>E-mail: @Model.Programmer.Email</h4>
+                <h4>Member since: @Model.Programmer.CreationTime.Day/@Model.Programmer.CreationTime.Month/@Model.Programmer.CreationTime.Year</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header font-weight-bold">
+                    Edit your information:
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="Programmer.FirstName">First Name</label>
+                            <input asp-for="Programmer.FirstName" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Programmer.FirstName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Programmer.LastName">Last Name</label>
+                            <input asp-for="Programmer.LastName" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Programmer.LastName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Programmer.Email"></label>
+                            <input asp-for="Programmer.Email" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Programmer.Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Programmer.Password">Current Password</label>
+                            <input type="password" asp-for="Programmer.Password" class="form-control" />
+                            <span class="text-danger" asp-validation-for="Programmer.Password"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="NewPassword">New Password (optional)</label>
+                            <input type="password" asp-for="NewPassword" class="form-control" />
+                            <span class="text-danger" asp-validation-for="NewPassword"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ConfirmNewPassword">Confirm New Password</label>
+                            <input type="password" asp-for="ConfirmNewPassword" class="form-control" />
+                            <span class="text-danger" asp-validation-for="ConfirmNewPassword"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer align-content-center">
+                    <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="AccountPage">Cancel</a>
+                    <input type="submit" value="Update" class="btn btn-success" style="width: 15rem" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+@section Scripts
+{
+    <script src="~/js/showTooltips.js"></script>
+    <script src="~/js/showModal.js"></script>
+}
