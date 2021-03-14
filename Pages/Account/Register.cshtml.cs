@@ -19,6 +19,7 @@ namespace UserStories.Pages.Account
         public string Message { get; set; }
         [BindProperty]
         public Programmer Programmer { get; set; }
+        [BindProperty] public string confirmationPW { get; set; }
 
 
         public RegisterModel(ProgrammerService programmerService)
@@ -32,9 +33,15 @@ namespace UserStories.Pages.Account
         public IActionResult OnPost()
         {
 
-            if (programmerService.IsEmailInUse(Programmer.Email)) // Checks if the email is not in use. DOES NOT ACTUALLY WORK ATM
+            if (programmerService.IsEmailInUse(Programmer.Email)) // Checks if the email is not in use. DOES NOT SHOW THE TEXT ATM
             {
                 ModelState.AddModelError(Programmer.Email, "Email is already in use!");
+                return Page();
+            }
+
+            if (confirmationPW != Programmer.Password)
+            {
+                ModelState.AddModelError(Programmer.Password, "Passwords did not match");
                 return Page();
             }
 
@@ -43,22 +50,10 @@ namespace UserStories.Pages.Account
                 return Page();
             }
 
-            // HASHING PASSWORD FOR STORING
-            byte[] salt = new byte[128 / 8];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(salt);
-            }
+            var hashed = programmerService.HashPassword(Programmer.Password);
 
-            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: Programmer.Password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
-
-            Programmer.Password = hashed;
-            Programmer.Salt = salt;
+            Programmer.Salt = hashed.Item1;
+            Programmer.Password = hashed.Item2;
             programmerService.AddProgrammer(Programmer);
 
             return RedirectToPage("../Index");

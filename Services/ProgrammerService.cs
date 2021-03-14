@@ -54,11 +54,7 @@ namespace UserStories.Services
             return false;
 
         }
-        /// <summary>
-        /// Checks if email is already in use, returns true if it is.
-        /// </summary>
-        /// <param name="email">Email of the user trying to register.</param>
-        /// <returns></returns>
+
         public bool IsEmailInUse(string email)
         {
             return programmers.Any(u => u.Email == email); // Checks all users in list "users" if incoming email matches one of them.
@@ -74,9 +70,58 @@ namespace UserStories.Services
             return null;
         }
 
+        public Programmer FindProgrammerById(int id)
+        {
+            foreach (Programmer p in programmers)
+            {
+                if (p.ProgrammerId == id) return p;
+            }
+
+            return null;
+        }
+
         public void AddProfilePicture(int id, string fileName)
         {
             programmers[id].ProfilePictureName = fileName;
+            Commit();
+        }
+
+        public Tuple<byte[], string> HashPassword(string password)
+        {
+            // HASHING PASSWORD FOR STORING
+            byte[] salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return Tuple.Create(salt, hashed);
+        }
+
+        public void ChangePassword(int id, string password)
+        {
+            var hashed = HashPassword(password);
+            Programmer p = FindProgrammerById(id);
+            p.Password = hashed.Item2;
+            p.Salt = hashed.Item1;
+
+            Commit();
+        }
+
+        public void UpdateProgrammer(int id, Programmer programmer)
+        {
+            Programmer p = FindProgrammerById(id);
+            p.FirstName = programmer.FirstName;
+            p.LastName = programmer.LastName;
+            p.Email = programmer.Email;
+
             Commit();
         }
 
