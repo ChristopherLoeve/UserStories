@@ -1,11 +1,14 @@
 [
   {
     "FirstName": "Oscar",
-    "LastName": "Hemmingsen",
+    "LastName": "Testersen",
+    "FullName": "Oscar Testersen",
     "Email": "oscar@mail.dk",
-    "Password": "12345678",
-    "FullName": "Oscar Hemmingsen",
-    "ProgrammerId": 1,
-    "LoggedIn": true
+    "Password": "z5HacZ8cfWZr1mEfKHBLE0sD4OOyXhqzwm3fJilyH\u002BI=",
+    "Salt": "CAgQm/Vsy8+VhjpO8YX+dg==",
+    "ProgrammerId": 0,
+    "ProfilePictureName": "oscar@mail.dk.png",
+    "CreationTime": "2021-03-14T08:23:46.7386881+01:00",
+    "AccessLevel": 1
   }
 ]

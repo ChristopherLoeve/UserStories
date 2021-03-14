@@ -39,6 +39,7 @@ namespace UserStories
                         options.Conventions.AuthorizeFolder("/Fixes");
                         options.Conventions.AllowAnonymousToPage("/Account/Login");
                         options.Conventions.AllowAnonymousToPage("/Account/Register");
+                        options.Conventions.AllowAnonymousToPage("/Account/Logout");
                     }
                 );
 

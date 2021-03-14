@@ -17,7 +17,7 @@ namespace UserStories.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly ProgrammerService programmerService;
-        public new Programmer Programmer { get; set; }
+        public Programmer Programmer { get; set; }
         [Required, EmailAddress, BindProperty]
         public string Email { get; set; }
         [Required, BindProperty]
@@ -32,32 +32,30 @@ namespace UserStories.Pages.Account
 
         public IActionResult OnPost()
         {
-            bool doesProgrammerExist = programmerService.ValidateLogin(Email, Password);
-            if (!doesProgrammerExist)
+            if (!programmerService.ValidateLogin(Email, Password))
             {
+                ModelState.AddModelError("Email", "The email or password is incorrect");
                 return Page();
             }
             TempData["LoginSuccess"] = "Login Successful!";
 
-                var scheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            var scheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-                var user = new ClaimsPrincipal
+            var user = new ClaimsPrincipal
+            (
+                new ClaimsIdentity
                 (
-                    new ClaimsIdentity
-                    (
-                            new [] { new Claim(ClaimTypes.Name, Email), },
-                            scheme
-                    )
-                );
-                return SignIn(user, scheme);
-            
+                        new [] { new Claim(ClaimTypes.Name, Email), },
+                        scheme
+                )
+            );
+            return SignIn(user, scheme);
         }
 
-        public async Task<IActionResult> OnPostLogoutAsync()
+        public IActionResult OnGetLogout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            return RedirectToPage("/UserStories/UserStories");
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToPage("/Index");
         }
     }
 }

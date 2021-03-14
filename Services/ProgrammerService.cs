@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using UserStories.Models;
 
 namespace UserStories.Services
@@ -46,10 +49,7 @@ namespace UserStories.Services
         {
             if (IsEmailInUse(email))
             {
-                if (programmers.Any(u => u.Password == password)) // Checks if password matches password.
-                {
-                    return true;
-                }
+                return (FindProgrammerByEmail(email).ValidatePassword(password));
             }
             return false;
 
@@ -62,6 +62,22 @@ namespace UserStories.Services
         public bool IsEmailInUse(string email)
         {
             return programmers.Any(u => u.Email == email); // Checks all users in list "users" if incoming email matches one of them.
+        }
+
+        public Programmer FindProgrammerByEmail(string email)
+        {
+            foreach (Programmer p in programmers)
+            {
+                if (p.Email == email) return p;
+            }
+
+            return null;
+        }
+
+        public void AddProfilePicture(int id, string fileName)
+        {
+            programmers[id].ProfilePictureName = fileName;
+            Commit();
         }
 
         public void Commit()
