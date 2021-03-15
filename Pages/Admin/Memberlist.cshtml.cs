@@ -21,9 +21,6 @@ namespace UserStories.Pages.Admin
 
         public IActionResult OnGet()
         {
-            if (ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel < 10)
-                return RedirectToPage("../index");
-
             Programmers = ProgrammerService.GetProgrammers();
 
             return Page();
