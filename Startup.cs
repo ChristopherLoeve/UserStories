@@ -33,10 +33,12 @@ namespace UserStories
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                     {
-                        options.Conventions.AuthorizeFolder("/Backlog");
                         options.Conventions.AuthorizeFolder("/Account");
-                        options.Conventions.AuthorizeFolder("/UserStories");
+                        options.Conventions.AuthorizeFolder("/Admin");
+                        options.Conventions.AuthorizeFolder("/Backlog");
                         options.Conventions.AuthorizeFolder("/Fixes");
+                        options.Conventions.AuthorizeFolder("/UserStories");
+
                         options.Conventions.AllowAnonymousToPage("/Account/Login");
                         options.Conventions.AllowAnonymousToPage("/Account/Register");
                         options.Conventions.AllowAnonymousToPage("/Account/Logout");

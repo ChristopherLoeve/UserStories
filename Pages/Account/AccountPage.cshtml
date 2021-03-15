@@ -20,8 +20,9 @@
 
                     <form method="post" enctype="multipart/form-data">
 
-                        <label class="font-weight-bold" for="img">Upload profile picture</label>
-                        <input id="File1" type="file" asp-for="Uploadfiles" accept="image/*"/>
+                        <label class="font-weight-bold" for="img">Upload profile picture:</label>
+                        <h5  style="font-size: 80%" >Accepts .jpg or .png files</h5>
+                        <input id="File1" style="padding-top: 3px; padding-bottom: 3px;" type="file" asp-for="Uploadfiles" accept=".jpg, .png"/>
                         <input id="Upload Picture" type="submit" value="Upload Image"/>
                     </form>
                 }
@@ -36,7 +37,7 @@
 </div>
 
 
-    @section Scripts
+@section Scripts
 {
-        <script src="~/js/showTooltips.js"></script>
-    }
+    <script src="~/js/showTooltips.js"></script>
+}

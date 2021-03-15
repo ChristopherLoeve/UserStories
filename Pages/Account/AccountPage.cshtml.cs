@@ -39,7 +39,10 @@ namespace UserStories.Pages.Account
         {
             Programmer = ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name);
 
-            var Filupload = Path.Combine(_he.WebRootPath, "Images\\ProfilePictures", Programmer.Email + "." + Uploadfiles.ContentType.Remove(0,6));
+            if (Uploadfiles == null) // Makes sure the user has chosen an image before trying to upload it
+                return Page();
+
+            var Filupload = Path.Combine(_he.WebRootPath, "Images\\ProfilePictures", Programmer.Email + "." + Uploadfiles.ContentType.Remove(0,6)); // Renames file to user's email to avoid conflicting file names
             using (var Fs = new FileStream(Filupload, FileMode.Create))
             {
                 await Uploadfiles.CopyToAsync(Fs);
