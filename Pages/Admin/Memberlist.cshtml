@@ -39,6 +39,10 @@
                         <td>@p.Email</td>
                         <td>@p.CreationTime.Day/@p.CreationTime.Month/@p.CreationTime.Year</td>
                         <td>@p.AccessLevel</td>
+                        @if (@Model.ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel >= 10)
+                        {
+                            <td>Test</td>
+                        }
                     </tr>
                 }
             </tbody>
