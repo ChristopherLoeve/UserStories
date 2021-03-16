@@ -9,14 +9,18 @@
         <h2>Members</h2>       
         <table class="table table-striped">
             <thead>
-            <tr>
-                <th>Picture</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Creation Date</th>
-                <th>Access Level</th>
-            </tr>
+                <tr>
+                    <th>Picture</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Creation Date</th>
+                    <th>Access Level</th>
+                    @if (@Model.ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel >= 10)
+                    {
+                        <th>Admin Actions</th>
+                    }
+                    </tr>
             </thead>
             <tbody>
                 @foreach (Programmer p in @Model.Programmers)
@@ -41,7 +45,9 @@
                         <td>@p.AccessLevel</td>
                         @if (@Model.ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel >= 10)
                         {
-                            <td>Test</td>
+                        <td>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete programmer" asp-page="DeleteProgrammer" asp-route-id="@p.ProgrammerId"><i class="fa fa-trash" style="color: grey"></i></a>
+                        </td>
                         }
                     </tr>
                 }
