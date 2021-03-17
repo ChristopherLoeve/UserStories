@@ -99,6 +99,36 @@ namespace UserStories.Services
             Commit();
         }
 
+        public void DeleteUserStoryTask(int userStory, int id)
+        {
+            UserStory us = (UserStory)GetCard(userStory);
+            foreach (Task usTask in us.Tasks)
+            {
+                if (usTask.Id == id)
+                {
+                    us.Tasks.Remove(usTask);
+                    break;
+                }
+            }
+
+            Commit();
+        }
+
+        public void UpdateUserStoryTask(Task task, int userStory, int id)
+        {
+            UserStory us = (UserStory) GetCard(userStory);
+            foreach (Task usTask in us.Tasks)
+            {
+                if (usTask.Id == id)
+                {
+                    usTask.Title = task.Title;
+                    usTask.Description = task.Description;
+                }
+            }
+
+            Commit();
+        }
+
         public List<Task> GetUserStoryTasks(int id)
         {
             UserStory userStory = (UserStory)GetCard(id);

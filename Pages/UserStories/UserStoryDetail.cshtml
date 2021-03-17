@@ -181,7 +181,7 @@
                     <p><b>Business value:</b> @Model.UserStory.BusinessValue</p>
                     <p>
                         <b>Tasks:</b>
-                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new task in &quot;Done&quot;" asp-page="CreateUserStoryTask" asp-route-id="@Model.UserStory.Id">
+                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new task in &quot;@Model.UserStory.Title&quot;" asp-page="CreateUserStoryTask" asp-route-id="@Model.UserStory.Id">
                             <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
                         </a>
                         @foreach (var card in @Model.Tasks)
@@ -196,8 +196,8 @@
                                         <p>@card.Description</p>
                                     </div>
                                     <div class="card-footer">
-                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Task" asp-page="EditUserStory" asp-route-id="card.Id"><i class="fa fa-edit" style="color: grey"></i></a>
-                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Task" asp-page="DeleteUserStory" asp-route-id="card.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Task" asp-page="EditUserStoryTask" asp-route-id="@card.Id" asp-route-userStory="@Model.UserStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
+                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Task" asp-page="DeleteUserStoryTask" asp-route-id="@card.Id" asp-route-userStory="@Model.UserStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
                                     </div>
                                 </div>
                             }
@@ -222,4 +222,5 @@
 @section Scripts
 {
     <script src="~/js/showModal.js"></script>
+    <script src="~/js/showTooltips.js"></script>
 }

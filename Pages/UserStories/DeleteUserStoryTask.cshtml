@@ -1,10 +1,14 @@
 ﻿@page
 @using global::UserStories.Models
-@model UserStories.CreateUserStoryTaskModel
+@model UserStories.DeleteUserStoryTaskModel
 @{
-    ViewData["Title"] = "Create Task";
+    ViewData["Title"] = "Delete" + @Model.Task.Title;
+    <h1 class="text-center">User Stories</h1>
+
     <div class="card-group">
+
         <div class="card mb-2 empty" style="width: 25%; padding: 5px; border: none">
+
             <div class="card-header p-2 text-center" style="height: 4rem">
                 <h5 class="card-title">
                     To Do
@@ -160,29 +164,23 @@
         </div>
     </div>
 
+
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" enctype="multipart/form-data">
-                    <div class="modal-header">
-                        <div class="form-group">
-                            <label asp-for="Task.Title" class="control-label"></label>
-                            <input asp-for="Task.Title" class="form-control" />
-
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label asp-for="Task.Description" class="control-label"></label>
-                            <textarea asp-for="Task.Description" class="form-control" rows="8" id="textarea"></textarea>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer align-content-center">
-                        <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="UserStories">Cancel</a>
-                        <input id="Create Task" type="submit" value="Create" class="btn btn-success" style="width: 15rem" />
-                    </div>
-                </form>
+                <div class="modal-header">
+                    <h5 class="modal-title">Are you sure you want to delete @Model.Task.Title</h5>
+                </div>
+                <div class="modal-body">
+                    <p><b>Description:</b></p>
+                    <p style="white-space: pre-line">@Model.Task.Description</p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="UserStoryDetail" asp-route-id="@Model.UserStory.Id">No</a>
+                    <form method="post">
+                        <input id="Delete Task" type="submit" value="Yes" class="btn btn-success" style="width: 15rem" asp-route-id="@Model.Task.Id" asp-route-userStory="@Model.UserStory.Id" />
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -191,5 +189,4 @@
 @section Scripts
 {
     <script src="~/js/showModal.js"></script>
-    <script src="~/js/showTooltips.js"></script>
 }
