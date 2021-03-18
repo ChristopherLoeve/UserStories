@@ -1,9 +1,8 @@
 ﻿@page
 @using global::UserStories.Models
-@using global::UserStories.Services
-@model UserStories.UserStoryDetailModel
+@model UserStories.DeleteUserStoryTaskModel
 @{
-    ViewData["Title"] = "Viewing " + @Model.UserStory.Title;
+    ViewData["Title"] = "Delete" + @Model.Task.Title;
     <h1 class="text-center">User Stories</h1>
 
     <div class="card-group">
@@ -29,12 +28,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height:2rem">
-                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer" align="center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to Backlog" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -68,12 +67,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
-                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer" align="center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;To Do&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -107,12 +106,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
-                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer" align="center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer align-content-center" style="height: 2.5rem; padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Doing&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -146,12 +145,12 @@
                 {
                     <div class="card mb-2 dragAbleElement" draggable="true" id="@userStory.Id">
                         <div class="card-header p-1" style="height: 2rem">
-                            <h5 class="card-title" align="center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
+                            <h5 class="card-title text-center">@userStory.Title<span class="float-right text-black-50 p-lg-1" data-toggle="tooltip" data-placement="bottom" title="Priority">@userStory.Priority</span></h5>
                         </div>
                         <div class="card-body p-1" style="height: 5rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             <p class="card-text" style="white-space: pre-line; padding-left: 5px; padding-right: 5px;">@userStory.Description</p>
                         </div>
-                        <div class="card-footer" align="center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
+                        <div class="card-footer align-content-center" style="height: 2.5rem;  padding-top: 0; padding-bottom: 0">
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Move to &quot;Done&quot;" asp-page-handler="MoveLeft" asp-route-id="@userStory.Id"><i class="fa fa-arrow-left" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="View details" asp-page="UserStoryDetail" asp-route-id="@userStory.Id"><i class="fa fa-info-circle" style="color: grey"></i></a>
                             <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit user story" asp-page="EditUserStory" asp-route-id="@userStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
@@ -169,70 +168,25 @@
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
-                    <h5 class="modal-title">@Model.UserStory.Title</h5>
+                    <h5 class="modal-title">Are you sure you want to delete @Model.Task.Title</h5>
                 </div>
-
                 <div class="modal-body">
                     <p><b>Description:</b></p>
-                    <p style="white-space: pre-line">@Model.UserStory.Description</p>
-                    <p><b>Priority:</b> @Model.UserStory.Priority</p>
-                    <p><b>Business value:</b> @Model.UserStory.BusinessValue</p>
-                    <p>
-                        <b>Tasks:</b>
-                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Add new task in &quot;@Model.UserStory.Title&quot;" asp-page="CreateUserStoryTask" asp-route-id="@Model.UserStory.Id">
-                            <i class="fa fa-plus" style="color: grey" aria-hidden="true"></i>
-                        </a>
-                        @foreach (var card in @Model.Tasks)
-                        {
-                            if (card is @Models.Task)
-                            {
-                                <div class="card mb-2 empty" style="padding: 5px;">
-                                    <div class="card-header">
-                                        <p>@card.Title</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>@card.Description</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Task" asp-page="EditUserStoryTask" asp-route-id="@card.Id" asp-route-userStory="@Model.UserStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
-                                        <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Task" asp-page="DeleteUserStoryTask" asp-route-id="@card.Id" asp-route-userStory="@Model.UserStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
-                                        @if (card.TaskDone == true)
-                                        {
-                                            <span class="float-right p-lg-1">
-                                                <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Toggle Status" asp-page-handler="Toggle" asp-route-id="@Model.UserStory.Id" asp-route-taskId="@card.Id"><i class="fa fa-check-square" style="color: grey;"></i></a>
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            <span class="float-right p-lg-1">
-                                                <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Toggle Status" asp-page-handler="Toggle" asp-route-id="@Model.UserStory.Id" asp-route-taskId="@card.Id"><i class="fa fa-square" style="color: grey;"></i></a>
-                                            </span>
-                                        }
-                                    </div>
-                                </div>
-                            }
-                        }
-                    </p>
-                    <p><b>Story points:</b> @Model.UserStory.StoryPoints.ToString().Replace('_', ' ')</p>
-                    <p><b>Status:</b> @Model.UserStory.Column.ToString().Replace('_', ' ')</p>
-                    <p><b>Creation date:</b> @Model.UserStory.CreationDate</p>
+                    <p style="white-space: pre-line">@Model.Task.Description</p>
                 </div>
-
                 <div class="modal-footer">
-                    <a type="button" class="btn btn-danger" style="width: 10rem" asp-page="UserStories">Close</a>
+                    <a type="button" class="btn btn-danger" style="width: 15rem" asp-page="UserStoryDetail" asp-route-id="@Model.UserStory.Id">No</a>
+                    <form method="post">
+                        <input id="Delete Task" type="submit" value="Yes" class="btn btn-success" style="width: 15rem" asp-route-id="@Model.Task.Id" asp-route-userStory="@Model.UserStory.Id" />
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>
-
 }
-
 
 @section Scripts
 {
     <script src="~/js/showModal.js"></script>
-    <script src="~/js/showTooltips.js"></script>
 }

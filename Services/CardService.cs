@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserStories.Models;
+using Task = UserStories.Models.Task;
 
 namespace UserStories.Services
 {
@@ -34,6 +35,22 @@ namespace UserStories.Services
                 }
             }
             return userStories;
+        }
+
+
+
+        public List<Task> GetTasks()
+        {
+            List<Task> tasks = new List<Task>();
+
+            foreach (Card card in cardList)
+            {
+                if (card is Task)
+                {
+                    tasks.Add((Task)card);
+                }
+            }
+            return tasks;
         }
 
         public List<UserStory> GetUserStoriesByColumn(Column column)
@@ -73,6 +90,67 @@ namespace UserStories.Services
         {
             cardList.Add(card);
             Commit();
+        }
+
+        public void AddTask(Task task, int userStoryId)
+        {
+            UserStory userStory = (UserStory)GetCard(userStoryId);
+            userStory.Tasks.Add(task);
+            Commit();
+        }
+
+        public void DeleteUserStoryTask(int userStory, int id)
+        {
+            UserStory us = (UserStory)GetCard(userStory);
+            foreach (Task usTask in us.Tasks)
+            {
+                if (usTask.Id == id)
+                {
+                    us.Tasks.Remove(usTask);
+                    break;
+                }
+            }
+
+            Commit();
+        }
+
+        public void UpdateUserStoryTask(Task task, int userStory, int id)
+        {
+            UserStory us = (UserStory) GetCard(userStory);
+            foreach (Task usTask in us.Tasks)
+            {
+                if (usTask.Id == id)
+                {
+                    usTask.Title = task.Title;
+                    usTask.Description = task.Description;
+                }
+            }
+
+            Commit();
+        }
+
+        public void TaskStatus(int userStory, int id)
+        {
+            UserStory us = (UserStory) GetCard(userStory);
+            foreach (Task usTask in us.Tasks)
+            {
+                if (usTask.Id == id && usTask.TaskDone == false)
+                {
+                    usTask.TaskDone = true;
+                }
+                else if(usTask.Id == id && usTask.TaskDone == true)
+                {
+                    usTask.TaskDone = false;
+                }
+            }
+
+            Commit();
+        }
+
+        public List<Task> GetUserStoryTasks(int id)
+        {
+            UserStory userStory = (UserStory)GetCard(id);
+            return userStory.Tasks;
         }
 
         public Card DeleteCard(int id)
