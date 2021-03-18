@@ -81,7 +81,22 @@
     "Priority": 3,
     "StoryPoints": 2,
     "Column": 3,
-    "Tasks": [],
+    "Tasks": [
+      {
+        "TaskDone": false,
+        "Id": 28,
+        "Title": "fgyhujikm",
+        "Description": "gfvvyhujbkmi",
+        "CreationDate": "2021-03-18T12:55:20.9553139+01:00"
+      },
+      {
+        "TaskDone": false,
+        "Id": 32,
+        "Title": "jerthjte",
+        "Description": "tjrhhjte",
+        "CreationDate": "2021-03-18T12:57:17.6952043+01:00"
+      }
+    ],
     "Id": 13,
     "Title": "Bug Fixes",
     "Description": "As a user\r\nI want to be able to view a page full of Bug reports\r\nSo that I can see the title, the description of the bug and if it has been solved",
@@ -176,6 +191,20 @@
         "Title": "Task Test 1",
         "Description": "This is task test number 1",
         "CreationDate": "2021-03-11T13:50:24.1634778+01:00"
+      },
+      {
+        "TaskDone": true,
+        "Id": 26,
+        "Title": "hjtre",
+        "Description": "hjtrs ",
+        "CreationDate": "2021-03-18T12:52:40.0612697+01:00"
+      },
+      {
+        "TaskDone": false,
+        "Id": 27,
+        "Title": "yrkjkrsyykr",
+        "Description": "rtj",
+        "CreationDate": "2021-03-18T12:52:44.3957055+01:00"
       }
     ],
     "Id": 9,

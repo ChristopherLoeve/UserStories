@@ -35,7 +35,9 @@ namespace UserStories.Pages.UserStories
             UserStory = (UserStory)cardService.GetCard(id);
             if (!ModelState.IsValid)
             {
+                UserStories = cardService.GetUserStories();
                 Tasks = cardService.GetTasks();
+                UserStory = (UserStory)cardService.GetCard(id);
                 return Page();
             }
 
