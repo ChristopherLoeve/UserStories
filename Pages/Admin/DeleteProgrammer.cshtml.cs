@@ -30,6 +30,9 @@ namespace UserStories.Pages.Admin
 
         public IActionResult OnPost(int id)
         {
+            if (ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel < 10)
+                return RedirectToPage("Memberlist");
+
             ProgrammerService.DeleteProgrammer(id);
             return RedirectToPage("Memberlist");
         }
