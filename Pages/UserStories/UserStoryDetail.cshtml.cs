@@ -31,5 +31,11 @@ namespace UserStories.Pages.UserStories
             UserStories = cardService.GetUserStories();
             UserStory = (UserStory)cardService.GetCard(id);
         }
+
+        public void OnGetToggle(int id, int taskId)
+        {
+            cardService.TaskStatus(id, taskId);
+            OnGet(id);
+        }
     }
 }

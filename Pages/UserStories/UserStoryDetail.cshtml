@@ -198,6 +198,18 @@
                                     <div class="card-footer">
                                         <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Task" asp-page="EditUserStoryTask" asp-route-id="@card.Id" asp-route-userStory="@Model.UserStory.Id"><i class="fa fa-edit" style="color: grey"></i></a>
                                         <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Task" asp-page="DeleteUserStoryTask" asp-route-id="@card.Id" asp-route-userStory="@Model.UserStory.Id"><i class="fa fa-trash" style="color: grey"></i></a>
+                                        @if (card.TaskDone == true)
+                                        {
+                                            <span class="float-right p-lg-1">
+                                                <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Toggle Status" asp-page-handler="Toggle" asp-route-id="@Model.UserStory.Id" asp-route-taskId="@card.Id"><i class="fa fa-check-square" style="color: grey;"></i></a>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="float-right p-lg-1">
+                                                <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Toggle Status" asp-page-handler="Toggle" asp-route-id="@Model.UserStory.Id" asp-route-taskId="@card.Id"><i class="fa fa-square" style="color: grey;"></i></a>
+                                            </span>
+                                        }
                                     </div>
                                 </div>
                             }

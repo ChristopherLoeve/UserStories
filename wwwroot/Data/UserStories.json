@@ -171,7 +171,7 @@
     "Column": 1,
     "Tasks": [
       {
-        "TaskDone": false,
+        "TaskDone": true,
         "Id": 25,
         "Title": "Task Test 1",
         "Description": "This is task test number 1",

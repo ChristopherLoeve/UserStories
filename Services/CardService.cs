@@ -129,6 +129,24 @@ namespace UserStories.Services
             Commit();
         }
 
+        public void TaskStatus(int userStory, int id)
+        {
+            UserStory us = (UserStory) GetCard(userStory);
+            foreach (Task usTask in us.Tasks)
+            {
+                if (usTask.Id == id && usTask.TaskDone == false)
+                {
+                    usTask.TaskDone = true;
+                }
+                else if(usTask.Id == id && usTask.TaskDone == true)
+                {
+                    usTask.TaskDone = false;
+                }
+            }
+
+            Commit();
+        }
+
         public List<Task> GetUserStoryTasks(int id)
         {
             UserStory userStory = (UserStory)GetCard(id);
