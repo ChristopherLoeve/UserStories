@@ -41,7 +41,7 @@ namespace UserStories.Pages.UserStories
             }
 
             cardService.UpdateUserStoryTask(Task, userStory, id);
-            return RedirectToPage("UserStoryDetail", new { id = id });
+            return RedirectToPage("UserStoryDetail", new { id = userStory });
         }
     }
 }
