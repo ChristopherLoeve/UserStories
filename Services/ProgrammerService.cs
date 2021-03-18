@@ -80,6 +80,12 @@ namespace UserStories.Services
             return null;
         }
 
+        public void DeleteProgrammer(int id)
+        {
+            programmers.Remove(FindProgrammerById(id));
+            Commit();
+        }
+
         public void AddProfilePicture(int id, string fileName)
         {
             programmers[id].ProfilePictureName = fileName;

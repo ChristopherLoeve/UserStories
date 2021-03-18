@@ -1,0 +1,44 @@
+﻿@page
+@model Admin.DeleteProgrammerModel
+@{
+}
+
+<div class="card mb-2" style="margin: auto; width: 75%; padding: 5px; border: none">
+    <div class="card-header p-2 text-center" style="border: none; background: none">
+        <h1 class="card-title"><a class="btn"><i class="fa fa-edit" style="visibility: hidden"></i></a>Are you sure you want to delete this Programmer: </h1>
+    </div>
+
+    <div class="card-body p-1;" Style="margin: auto; width: 100%" align="center">
+        <div class="row">
+            <div class="col-4" align="center">
+                @if (!String.IsNullOrEmpty(@Model.Programmer.ProfilePictureName))
+                {
+                    <img class="rounded-circle" style="width: 200px; height: 200px;" src="~/images/ProfilePictures/@Model.Programmer.ProfilePictureName" />
+                }
+                else
+                {
+                    <div style="width: 200px; height: 200px; border-radius: 50%; background: #512DA8; font-size: 50px; color: #fff; text-align: center; line-height: 200px;">@Model.Programmer.FirstName.ToUpper().First()@Model.Programmer.LastName.ToUpper().First()</div>
+                }
+
+            </div>
+            <div class="col-8" align="center">
+                <h4>Name: @Model.Programmer.FullName</h4>
+                <h4>E-mail: @Model.Programmer.Email</h4>
+                <h4>Member since: @Model.Programmer.CreationTime.Day/@Model.Programmer.CreationTime.Month/@Model.Programmer.CreationTime.Year</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" align="center" style="margin: auto; width: 31rem;">
+    <a type="button" class="btn btn-danger" style="width: 15rem; padding-right: 0.5rem;" asp-page="Memberlist">No</a>
+    <form method="post">
+        <input id="Delete Programmer" type="submit" asp-route-id="@Model.Programmer.ProgrammerId" value="Yes" class="btn btn-success" style="width: 15rem; padding-left: 0.5rem;"/>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/showTooltips.js"></script>
+}

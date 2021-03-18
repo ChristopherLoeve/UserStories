@@ -9,20 +9,24 @@
         <h2>Members</h2>       
         <table class="table table-striped">
             <thead>
-            <tr>
-                <th>Picture</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Creation Date</th>
-                <th>Access Level</th>
-            </tr>
+                <tr>
+                    <th>Picture</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Creation Date</th>
+                    <th>Access Level</th>
+                    @if (@Model.ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel >= 10)
+                    {
+                        <th>Admin Actions</th>
+                    }
+                    </tr>
             </thead>
             <tbody>
                 @foreach (Programmer p in @Model.Programmers)
                 {
                     <tr>
-                        <td>
+                        <td align="center">
                             @if (String.IsNullOrEmpty(p.ProfilePictureName)) // Profile picture is a circle with their name if none is found
                             {
                                 <div style="width: 100px; height: 100px; border-radius: 50%; background: #512DA8; font-size: 25px; color: #fff; text-align: center; line-height: 100px;">@p.FirstName.ToUpper().First()@p.LastName.ToUpper().First()</div>
@@ -32,6 +36,11 @@
                             {
                                 
                                 <img class="rounded-circle" style="width: 100px; height: 100px;" src="~/images/ProfilePictures/@p.ProfilePictureName"/>
+                                @if (@Model.ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel >= 10)
+                                {
+                                    
+                                    <p align="center"><a class="btn text-black-50 p-0" type="button" title="Delete Picture" asp-page-handler="DeletePicture" asp-route-id="@p.ProgrammerId">Delete Picture</a></p>
+                                }
                             }
                         </td>
                         <td>@p.FirstName</td>
@@ -41,7 +50,9 @@
                         <td>@p.AccessLevel</td>
                         @if (@Model.ProgrammerService.FindProgrammerByEmail(HttpContext.User.Identity.Name).AccessLevel >= 10)
                         {
-                            <td>Test</td>
+                        <td>
+                            <a class="btn" type="button" data-toggle="tooltip" data-placement="bottom" title="Delete programmer" asp-page="DeleteProgrammer" asp-route-id="@p.ProgrammerId"><i class="fa fa-trash" style="color: grey"></i></a>
+                        </td>
                         }
                     </tr>
                 }
