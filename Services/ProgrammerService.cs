@@ -9,50 +9,32 @@ namespace UserStories.Services
 {
     public class ProgrammerService
     {
-        private readonly List<Programmer> programmers;
-        public JsonFileService JsonFileService { get; set; }
-        public static Programmer Programmer { get; set; }
+        private List<Programmer> programmers;
+        private readonly DbService<Programmer> DbService;
 
-        public ProgrammerService(JsonFileService jsonFileService)
+        public ProgrammerService(DbService<Programmer> dbService)
         {
-            JsonFileService = jsonFileService;
-
-            programmers = JsonFileService.GetProgrammers().ToList();
+            DbService = dbService;
+            programmers = DbService.GetObjects().Result;
         }
 
-        /// <summary>
-        /// Returns the list of users.
-        /// </summary>
-        /// <returns></returns>
         public List<Programmer> GetProgrammers()
         {
             return programmers;
         }
 
-        /// <summary>
-        /// Add and saves a new user.
-        /// </summary>
-        /// <param name="user"></param>
-        public void AddProgrammer(Programmer programmer)
+        public async void AddProgrammer(Programmer programmer)
         {
-            programmers.Add(programmer);
-            JsonFileService.SaveProgrammers(programmers);
+            await DbService.AddObject(programmer);
+            programmers = DbService.GetObjects().Result;
         }
 
-        /// <summary>
-        /// Validates if user entered correct password and username.
-        /// Returns the User object, if it exists.
-        /// </summary>
-        /// <param name="Programmer"></param>
-        /// <returns></returns>
         public bool ValidateLogin(string email, string password)
         {
             if (IsEmailInUse(email))
-            {
-                return (FindProgrammerByEmail(email).ValidatePassword(password));
-            }
+                return (FindProgrammerByEmail(email).ValidatePassword(password)); // returns true if email & password matches
+            
             return false;
-
         }
 
         public bool IsEmailInUse(string email)
@@ -66,7 +48,6 @@ namespace UserStories.Services
             {
                 if (p.Email == email) return p;
             }
-
             return null;
         }
 
@@ -80,16 +61,17 @@ namespace UserStories.Services
             return null;
         }
 
-        public void DeleteProgrammer(int id)
+        public async void DeleteProgrammer(int id)
         {
-            programmers.Remove(FindProgrammerById(id));
-            Commit();
+            await DbService.RemoveObject(FindProgrammerById(id));
+            programmers = DbService.GetObjects().Result;
         }
 
-        public void AddProfilePicture(int id, string fileName)
+        public async void AddProfilePicture(int id, string fileName)
         {
-            programmers[id].ProfilePictureName = fileName;
-            Commit();
+            var programmer = programmers[id];
+            programmer.ProfilePictureName = fileName;
+            UpdateProgrammer(id, programmer);
         }
 
         public Tuple<byte[], string> HashPassword(string password)
@@ -114,26 +96,19 @@ namespace UserStories.Services
         public void ChangePassword(int id, string password)
         {
             var hashed = HashPassword(password);
-            Programmer p = FindProgrammerById(id);
-            p.Password = hashed.Item2;
-            p.Salt = hashed.Item1;
-
-            Commit();
+            var programmer = FindProgrammerById(id);
+            programmer.Password = hashed.Item2;
+            programmer.Salt = hashed.Item1;
+            UpdateProgrammer(id, programmer);
         }
 
-        public void UpdateProgrammer(int id, Programmer programmer)
+        public async void UpdateProgrammer(int id, Programmer programmer)
         {
             Programmer p = FindProgrammerById(id);
             p.FirstName = programmer.FirstName;
             p.LastName = programmer.LastName;
             p.Email = programmer.Email;
-
-            Commit();
-        }
-
-        public void Commit()
-        {
-            JsonFileService.SaveProgrammers(programmers);
+            await DbService.UpdateObject(p);
         }
     }
 }

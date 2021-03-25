@@ -42,7 +42,7 @@ namespace UserStories.Pages.Backlog
                 return Page();
             }
 
-            cardService.UpdateCard(UserStory.Id, UserStory);
+            cardService.UpdateCard(UserStory);
 
             return RedirectToPage("Backlog");
         }

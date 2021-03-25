@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using UserStories.Models;
 using UserStories.Services;
+using Task = UserStories.Models.Task;
 
 namespace UserStories
 {
@@ -27,7 +29,14 @@ namespace UserStories
         {
             services.AddRazorPages();
             services.AddSingleton<ProgrammerService, ProgrammerService>();
-            services.AddSingleton<JsonFileService, JsonFileService>();
+            services.AddTransient<DbService<Programmer>>();
+            services.AddTransient<DbService<Card>>();
+            services.AddTransient<DbService<Fix>>();
+            services.AddTransient<DbService<UserStory>>();
+            services.AddTransient<DbService<Task>>();
+
+            services.AddSingleton<CardService, CardService>();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
             services.AddMvc()
@@ -45,7 +54,7 @@ namespace UserStories
                     }
                 );
 
-            services.AddSingleton<CardService, CardService>();
+            services.AddDbContext<UserStoriesDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +75,8 @@ namespace UserStories
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -30,7 +30,8 @@ namespace UserStories.Pages.Fixes
 
         public IActionResult OnPost(int id)
         {
-            cardService.UpdateCard(id, Fix);
+            Fix.Id = id;
+            cardService.UpdateCard(Fix);
             return RedirectToPage("Fixes");
         }
     }

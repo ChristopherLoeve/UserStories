@@ -43,7 +43,7 @@ namespace UserStories.Pages.UserStories
             }
 
             UserStory.Column = (Column)id;
-            cardService.AddCard(UserStory);
+            cardService.AddCard((Card)UserStory);
             return RedirectToPage("UserStories");
         }
     }
