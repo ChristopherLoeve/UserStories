@@ -41,27 +41,27 @@ namespace UserStories.Pages.UserStories
             OnGet();
         }
 
-        public IActionResult OnGetUpdateObject(int id, string column)
-        {
-            UserStories = cardService.GetUserStories();
-            string columnName = string.Empty;
-            foreach (char character in column)
-            {
-                if (char.IsLetter(character))
-                {
-                    columnName += character;
-                } else
-                {
-                    if (character == '_')
-                    {
-                        columnName += character;
-                    }
-                }
-            }
+        //public IActionResult OnGetUpdateObject(int id, string column) /// ????? WHAT DOES THIS ONE EVEN DO ?????
+        //{
+        //    UserStories = cardService.GetUserStories();
+        //    string columnName = string.Empty;
+        //    foreach (char character in column)
+        //    {
+        //        if (char.IsLetter(character))
+        //        {
+        //            columnName += character;
+        //        } else
+        //        {
+        //            if (character == '_')
+        //            {
+        //                columnName += character;
+        //            }
+        //        }
+        //    }
 
-            cardService.UpdateCard(id, cardService.GetCard(id));
-            return Page();
-        }
+        //    cardService.UpdateCard(id, cardService.GetCard(id));
+        //    return Page();
+        //}
         
     }
 }

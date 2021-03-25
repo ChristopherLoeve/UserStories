@@ -25,11 +25,11 @@ namespace UserStories.Models
 
     public class UserStory : Card
     {
-        public int BusinessValue { get; set; }
-        public int Priority { get; set; }
-        public StoryPoint StoryPoints { get; set; }
-        public Column Column { get; set; }
-        public List<Task> Tasks { get; set; }
+        [Required] public int BusinessValue { get; set; }
+        [Required] public int Priority { get; set; }
+        [Required] public StoryPoint StoryPoints { get; set; }
+        [Required] public Column Column { get; set; }
+        [Required] public List<Task> Tasks { get; set; }
 
         public UserStory()
         {

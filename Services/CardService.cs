@@ -10,12 +10,12 @@ namespace UserStories.Services
     public class CardService
     {
         private List<Card> cardList;
-        private JsonFileService jsonFileService { get; set; }
+        private readonly DbService<Card> DbService;
 
-        public CardService(JsonFileService jsonFileService)
+        public CardService(DbService<Card> dbService)
         {
-            this.jsonFileService = jsonFileService;
-            cardList = this.jsonFileService.GetJsonCards().ToList();
+            DbService = dbService;
+            cardList = DbService.GetObjects().Result;
         }
 
         public List<Card> GetCards()
@@ -23,6 +23,38 @@ namespace UserStories.Services
             return cardList;
         }
 
+        public Card GetCard(int id)
+        {
+            Card card = cardList.Find(c => c.Id == id);
+            return card;
+        }
+
+        public async void AddCard(Card card)
+        {
+            cardList.Add(card);
+            await DbService.AddObject(card);
+        }
+
+        public Card DeleteCard(int id)
+        {
+            Card cardToBeDeleted = GetCard(id);
+
+            if (cardToBeDeleted != null)
+            {
+                cardList.Remove(cardToBeDeleted);
+                DbService.RemoveObject(cardToBeDeleted);
+            }
+
+            return cardToBeDeleted;
+        }
+
+        public void UpdateCard(Card card)
+        {
+            DbService.UpdateObject(card);
+            cardList = DbService.GetObjects().Result;
+        }
+
+        // CARDS BY TYPE //
         public List<UserStory> GetUserStories()
         {
             List<UserStory> userStories = new List<UserStory>();
@@ -31,13 +63,12 @@ namespace UserStories.Services
             {
                 if (card is UserStory)
                 {
-                    userStories.Add((UserStory)card);
+                    userStories.Add((UserStory) card);
                 }
             }
+
             return userStories;
         }
-
-
 
         public List<Task> GetTasks()
         {
@@ -47,10 +78,26 @@ namespace UserStories.Services
             {
                 if (card is Task)
                 {
-                    tasks.Add((Task)card);
+                    tasks.Add((Task) card);
                 }
             }
+
             return tasks;
+        }
+
+        public List<Fix> GetFixes()
+        {
+            List<Fix> fixes = new List<Fix>();
+
+            foreach (Card card in cardList)
+            {
+                if (card is Fix)
+                {
+                    fixes.Add((Fix) card);
+                }
+            }
+
+            return fixes;
         }
 
         public List<UserStory> GetUserStoriesByColumn(Column column)
@@ -63,55 +110,40 @@ namespace UserStories.Services
 
             return userStories;
         }
+        // CARDS BY TYPE //
 
-        public List<Fix> GetFixes()
+
+        public List<Task> GetUserStoryTasks(int id)
         {
-            List<Fix> fixes = new List<Fix>();
-
-            foreach (Card card in cardList)
-            {
-                if (card is Fix)
-                {
-                    fixes.Add((Fix)card);
-                }
-            }
-            return fixes;
-        }
-
-        public Card GetCard(int id)
-        {
-            Card card = cardList.Find(c => c.Id == id);
-            return card;
+            UserStory userStory = (UserStory)GetCard(id);
+            return userStory.Tasks;
         }
 
 
-
-        public void AddCard(Card card)
-        {
-            cardList.Add(card);
-            Commit();
-        }
-
+        // TASKS //
         public void AddTask(Task task, int userStoryId)
         {
-            UserStory userStory = (UserStory)GetCard(userStoryId);
+            UserStory userStory = (UserStory) GetCard(userStoryId);
             userStory.Tasks.Add(task);
-            Commit();
+            cardList.Add(task);
+            DbService.UpdateObject(userStory);
         }
 
-        public void DeleteUserStoryTask(int userStory, int id)
+        public void DeleteUserStoryTask(int userStoryId, int id)
         {
-            UserStory us = (UserStory)GetCard(userStory);
-            foreach (Task usTask in us.Tasks)
+            UserStory userStory = (UserStory)GetCard(userStoryId);
+            foreach (Task usTask in userStory.Tasks)
             {
                 if (usTask.Id == id)
                 {
-                    us.Tasks.Remove(usTask);
+                    userStory.Tasks.Remove(usTask);
+                    cardList.Remove(usTask);
+                    DbService.RemoveObject(usTask);
+                    DbService.UpdateObject(userStory);
                     break;
                 }
             }
-
-            Commit();
+            
         }
 
         public void UpdateUserStoryTask(Task task, int userStory, int id)
@@ -123,12 +155,12 @@ namespace UserStories.Services
                 {
                     usTask.Title = task.Title;
                     usTask.Description = task.Description;
+                    DbService.UpdateObject(usTask);
                 }
             }
-
-            Commit();
         }
 
+        // Is task done or not
         public void TaskStatus(int userStory, int id)
         {
             UserStory us = (UserStory) GetCard(userStory);
@@ -138,52 +170,19 @@ namespace UserStories.Services
                 {
                     usTask.TaskDone = true;
                 }
-                else if(usTask.Id == id && usTask.TaskDone == true)
+                else if (usTask.Id == id && usTask.TaskDone == true)
                 {
                     usTask.TaskDone = false;
                 }
             }
 
-            Commit();
         }
-
-        public List<Task> GetUserStoryTasks(int id)
-        {
-            UserStory userStory = (UserStory)GetCard(id);
-            return userStory.Tasks;
-        }
-
-        public Card DeleteCard(int id)
-        {
-            Card cardToBeDeleted = GetCard(id);
-
-            if (cardToBeDeleted != null)
-            {
-                cardList.Remove(cardToBeDeleted);
-            }
-            Commit();
-            return cardToBeDeleted;
-        }
-
-        public void UpdateCard(int id, Card card)
-        {
-            DeleteCard(id);
-            AddCard(card);
-            Commit();
-        }
+        // TASKS
         
-                    
-           
-
-        public void Commit()
-        {
-            jsonFileService.SaveJsonCards(GetUserStories(), GetFixes());
-        }
-
-
+        // COLUMN CHANGING FOR USER STORIES //
         public void MoveStoryLeft(int id)
         {
-            UserStory userStory = (UserStory)GetCard(id);
+            UserStory userStory = (UserStory) GetCard(id);
             switch (userStory.Column)
             {
                 case Column.To_Do:
@@ -199,12 +198,13 @@ namespace UserStories.Services
                     userStory.Column = Column.Done;
                     break;
             }
-            Commit();
-        }
+
+            DbService.UpdateObject(userStory);
+        } 
 
         public void MoveStoryRight(int id)
         {
-            UserStory userStory = (UserStory)GetCard(id);
+            UserStory userStory = (UserStory) GetCard(id);
             switch (userStory.Column)
             {
                 case Column.Backlog:
@@ -220,9 +220,9 @@ namespace UserStories.Services
                     userStory.Column = Column.Done_Done;
                     break;
             }
-            Commit();
-        }
 
-       
+            DbService.UpdateObject(userStory);
+        }
+        // COLUMN CHANGING FOR USER STORIES //
     }
 }

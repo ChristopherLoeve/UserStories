@@ -10,6 +10,8 @@ namespace UserStories.Models
 {
     public class Programmer
     {
+        [Key] public int ProgrammerId { get; set; }
+
         [Required, StringLength(20, MinimumLength = 3)]
         public string FirstName { get; set; }
         [Required, StringLength(20, MinimumLength = 3)]
@@ -22,12 +24,11 @@ namespace UserStories.Models
         public string Email { get; set; }
         [Required, StringLength(60, MinimumLength = 8)]
         public string Password { get; set; } 
-        public byte[] Salt { get; set; }
-        public int ProgrammerId { get; }
+        [Required] public byte[] Salt { get; set; }
         public static int InstanceCount { get; set; }
         public string ProfilePictureName { get; set; }
         public DateTime CreationTime { get; set; }
-        public int AccessLevel { get; set; }
+        [Required] public int AccessLevel { get; set; }
 
         public Programmer()
         {

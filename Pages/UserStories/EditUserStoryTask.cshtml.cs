@@ -14,9 +14,8 @@ namespace UserStories.Pages.UserStories
     {
         public ProgrammerService ProgrammerService { get; private set; }
         [BindProperty] public Models.Task Task { get; set; }
-        public UserStory UserStory { get; set; }
         public List<UserStory> UserStories { get; private set; }
-        public List<Task> Tasks { get; private set; }
+        public static int UserStoryId { get; set; }
         private CardService cardService;
 
         public EditUserStoryTaskModel(CardService cardService, ProgrammerService programmerService)
@@ -24,24 +23,24 @@ namespace UserStories.Pages.UserStories
             ProgrammerService = programmerService;
             this.cardService = cardService;
         }
-        public void OnGet(int id)
+        public void OnGet(int userStoryId, int id)
         {
+            UserStoryId = userStoryId;
             UserStories = cardService.GetUserStories();
-            Tasks = cardService.GetTasks();
-            UserStory = (UserStory)cardService.GetCard(id);
+            Task = (Task)cardService.GetCard(id);
         }
 
-        public IActionResult OnPost(int userStory, int id)
+        public IActionResult OnPost(int id)
         {
-            UserStory = (UserStory)cardService.GetCard(id);
+            UserStory us = (UserStory)cardService.GetCard(UserStoryId);
             if (!ModelState.IsValid)
             {
-                Tasks = cardService.GetTasks();
+                Task = (Task)cardService.GetCard(id);
                 return Page();
             }
 
-            cardService.UpdateUserStoryTask(Task, userStory, id);
-            return RedirectToPage("UserStoryDetail", new { id = userStory });
+            cardService.UpdateUserStoryTask(Task, UserStoryId, id);
+            return RedirectToPage("UserStoryDetail", new { id = UserStoryId });
         }
     }
 }
