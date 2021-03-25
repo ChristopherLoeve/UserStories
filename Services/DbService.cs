@@ -10,15 +10,15 @@ namespace UserStories.Services
 {
     public class DbService <T> where T : class
     {
-        public async Task<List<T>> GetObjects()
+        public async Task<List<T>> GetObjectsAsync()
         {
             using (var context = new UserStoriesDbContext())
             {
-                return await context.Set<T>().ToListAsync();
+                return await context.Set<T>().AsNoTracking().ToListAsync();
             }
         }
         
-        public async Task AddObject(T t)
+        public async Task AddObjectAsync(T t)
         {
             using (var context = new UserStoriesDbContext())
             {
@@ -27,7 +27,7 @@ namespace UserStories.Services
             }
         }
 
-        public async Task RemoveObject(T t)
+        public async Task RemoveObjectAsync(T t)
         {
             using (var context = new UserStoriesDbContext())
             {
@@ -36,7 +36,7 @@ namespace UserStories.Services
             }
         }
 
-        public async Task UpdateObject(T t)
+        public async Task UpdateObjectAsync(T t)
         {
             using (var context = new UserStoriesDbContext())
             {

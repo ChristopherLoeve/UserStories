@@ -15,7 +15,7 @@ namespace UserStories.Services
         public CardService(DbService<Card> dbService)
         {
             DbService = dbService;
-            cardList = DbService.GetObjects().Result;
+            cardList = DbService.GetObjectsAsync().Result;
         }
 
         public List<Card> GetCards()
@@ -32,7 +32,7 @@ namespace UserStories.Services
         public async void AddCard(Card card)
         {
             cardList.Add(card);
-            await DbService.AddObject(card);
+            await DbService.AddObjectAsync(card);
         }
 
         public Card DeleteCard(int id)
@@ -42,7 +42,7 @@ namespace UserStories.Services
             if (cardToBeDeleted != null)
             {
                 cardList.Remove(cardToBeDeleted);
-                DbService.RemoveObject(cardToBeDeleted);
+                DbService.RemoveObjectAsync(cardToBeDeleted);
             }
 
             return cardToBeDeleted;
@@ -50,8 +50,8 @@ namespace UserStories.Services
 
         public void UpdateCard(Card card)
         {
-            DbService.UpdateObject(card);
-            cardList = DbService.GetObjects().Result;
+            DbService.UpdateObjectAsync(card);
+            cardList = DbService.GetObjectsAsync().Result;
         }
 
         // CARDS BY TYPE //
@@ -126,7 +126,7 @@ namespace UserStories.Services
             UserStory userStory = (UserStory) GetCard(userStoryId);
             userStory.Tasks.Add(task);
             cardList.Add(task);
-            DbService.UpdateObject(userStory);
+            DbService.UpdateObjectAsync(userStory);
         }
 
         public void DeleteUserStoryTask(int userStoryId, int id)
@@ -138,8 +138,8 @@ namespace UserStories.Services
                 {
                     userStory.Tasks.Remove(usTask);
                     cardList.Remove(usTask);
-                    DbService.RemoveObject(usTask);
-                    DbService.UpdateObject(userStory);
+                    DbService.RemoveObjectAsync(usTask);
+                    DbService.UpdateObjectAsync(userStory);
                     break;
                 }
             }
@@ -155,7 +155,7 @@ namespace UserStories.Services
                 {
                     usTask.Title = task.Title;
                     usTask.Description = task.Description;
-                    DbService.UpdateObject(usTask);
+                    DbService.UpdateObjectAsync(usTask);
                 }
             }
         }
@@ -199,7 +199,7 @@ namespace UserStories.Services
                     break;
             }
 
-            DbService.UpdateObject(userStory);
+            DbService.UpdateObjectAsync(userStory);
         } 
 
         public void MoveStoryRight(int id)
@@ -221,7 +221,7 @@ namespace UserStories.Services
                     break;
             }
 
-            DbService.UpdateObject(userStory);
+            DbService.UpdateObjectAsync(userStory);
         }
         // COLUMN CHANGING FOR USER STORIES //
     }

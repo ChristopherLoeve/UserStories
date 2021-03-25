@@ -15,7 +15,7 @@ namespace UserStories.Services
         public ProgrammerService(DbService<Programmer> dbService)
         {
             DbService = dbService;
-            programmers = DbService.GetObjects().Result;
+            programmers = DbService.GetObjectsAsync().Result;
         }
 
         public List<Programmer> GetProgrammers()
@@ -25,8 +25,8 @@ namespace UserStories.Services
 
         public async void AddProgrammer(Programmer programmer)
         {
-            await DbService.AddObject(programmer);
-            programmers = DbService.GetObjects().Result;
+            await DbService.AddObjectAsync(programmer);
+            programmers = DbService.GetObjectsAsync().Result;
         }
 
         public bool ValidateLogin(string email, string password)
@@ -63,8 +63,8 @@ namespace UserStories.Services
 
         public async void DeleteProgrammer(int id)
         {
-            await DbService.RemoveObject(FindProgrammerById(id));
-            programmers = DbService.GetObjects().Result;
+            await DbService.RemoveObjectAsync(FindProgrammerById(id));
+            programmers = DbService.GetObjectsAsync().Result;
         }
 
         public async void AddProfilePicture(int id, string fileName)
@@ -108,7 +108,7 @@ namespace UserStories.Services
             p.FirstName = programmer.FirstName;
             p.LastName = programmer.LastName;
             p.Email = programmer.Email;
-            await DbService.UpdateObject(p);
+            await DbService.UpdateObjectAsync(p);
         }
     }
 }
